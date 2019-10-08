@@ -1,0 +1,16 @@
+section {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.filters {
+    width: 100%;
+}
+
+.filters input {
+    width: 70%;
+}
+
+.filters button {
+    margin-left: 20px;
+}
