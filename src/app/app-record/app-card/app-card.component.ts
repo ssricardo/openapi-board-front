@@ -9,7 +9,10 @@ import { AppRecord } from '../../models/models';
 export class AppCardComponent implements OnInit {
 
   @Input()
-  public app: AppRecord;
+  public app: string;
+
+  @Input()
+  public namespace: string;
 
   constructor() { }
 
@@ -17,7 +20,7 @@ export class AppCardComponent implements OnInit {
   }
 
   public openApp() {
-    window.open('/view/' + this.app.name, '_blank');
+    window.open(`/view/?nm=${encodeURIComponent(this.namespace)}&app=${this.app}`, '_blank');
   }
 
 }
