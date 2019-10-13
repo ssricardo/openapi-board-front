@@ -20,7 +20,7 @@ export class AppListComponent implements OnInit {
       this.namespace = p['namespace'];
     });
 
-    this.service.getAppOnNamespace(this.namespace).subscribe(res => {
+    this.service.listAppOnNamespace(this.namespace).subscribe(res => {
       this.appList = res;
     });
   }

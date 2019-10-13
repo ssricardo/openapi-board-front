@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AppNamespace, AppRecord } from '../models/models';
+import config from '../../api-config.json';
 
 /** Responsible for Backend communications */
 
@@ -11,17 +12,21 @@ import { AppNamespace, AppRecord } from '../models/models';
 })
 export class AppRegistryService {
 
-  readonly BACKEND_BASE = "/api"; // FIXME
-
   constructor(private http: HttpClient) { }
 
   public listNamespaces(): Observable<AppNamespace[]> {
-    return this.http.get<AppNamespace[]>(this.BACKEND_BASE + "/namespaces");
+    return this.http.get<AppNamespace[]>(config.path + config.apis.namespaces);
   }
 
-  public getAppOnNamespace(nmSpace: String): Observable<AppRecord[]> {
-    return this.http.get<AppRecord[]>(this.BACKEND_BASE + '/nm/' + nmSpace);
+  public listAppOnNamespace(nmSpace: string): Observable<string[]> {
+    return this.http.get<string[]>(config.path + 
+      config.apis.getNamespace.replace(':namespaceName', encodeURIComponent(nmSpace)));
   }
 
-  // TODO: get app data
+  public getAppRecord(nmSpace: string, appName: string): Observable<AppRecord> {
+    return this.http.get<AppRecord>(config.path + 
+      config.apis.getNamespace
+        .replace(':namespaceName', encodeURIComponent(nmSpace))
+        .replace(':appName', encodeURIComponent(appName)));
+  }
 }
