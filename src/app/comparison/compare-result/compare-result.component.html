@@ -1,0 +1,11 @@
+<section>
+  
+  <div *ngIf="ready">
+    <h3>Comparison Result</h3>
+    <td-ngx-text-diff
+      [left]="leftApp"
+      [right]="rightApp"
+      loading="true"
+      outerContainerClass="diff-container"></td-ngx-text-diff>
+  </div>
+</section>

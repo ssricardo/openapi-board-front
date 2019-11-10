@@ -1,0 +1,48 @@
+nav {
+    width: 100%;
+    height: 68px;
+    background-color: #1976d2;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+nav h1 {
+    color: white;
+    margin: 0;
+}
+
+.start-top {
+    height: 150px;
+    text-align: center;
+    animation: ease-in-out;
+}
+
+.start-top h1 {
+    width: 100%;
+    text-align: center;
+    transition: 1s;
+}
+
+.page-top {
+    animation: ease-in-out;
+    transition: 1s;
+}
+
+.current-ns {
+    color: #FFFFFF;
+}
+
+.current-ns > b {
+    color: darkorange;
+}
+
+.hspacer {
+    flex: 1 1 auto;
+}
+
+a {
+    margin-left: 5px;
+}

@@ -9,12 +9,15 @@
 }
 
 body {
-  margin: 0;
+  margin: 0;  
 }
 
 .container {
   display: flex;
   flex-direction: row;
+  width: 920px;
+  margin: 0 auto;
+  align-items: center;
 }
 
 router-outlet + *  {
@@ -106,18 +109,7 @@ label {
 
 /* Top Bar */
 
-app-top-bar {
-  width: 100%;
-  height: 68px;
-  background-color: #1976d2;
-  padding: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
 
-app-top-bar h1 {
-  color: white;
-  margin: 0;
-}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

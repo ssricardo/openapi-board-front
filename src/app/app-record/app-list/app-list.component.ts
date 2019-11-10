@@ -16,9 +16,7 @@ export class AppListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let paramSub = this.route.params.subscribe(p => {
-      this.namespace = p['namespace'];
-    });
+    this.namespace = this.route.snapshot.paramMap.get('namespace');
 
     this.service.listAppOnNamespace(this.namespace).subscribe(res => {
       this.appList = res;

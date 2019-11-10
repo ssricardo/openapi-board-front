@@ -6,7 +6,7 @@ a {
     border: 1px inset #AAA;
     padding: 10px;
     line-height: 130%;
-    width: 250px;
+    width: 30%;
     min-height: 80px;
     margin: 10px;    
     display: inline-block;
@@ -21,9 +21,26 @@ i.material-icons {
     vertical-align: middle;
 }
 
-div {
-    padding-left: 40px;
-    vertical-align: middle;
+.vers {
+    text-align: right;
+    color: #777;
+}
+
+.vers span {
+    float: right;
+    display: inline-block;
+    margin-right: 20px;
+    
+    overflow: hidden;
+}
+
+.vers i {
+    width: 32px;
+    zoom: 0.85;
+}
+
+.vers span:hover {
+    border: 1px solid;
 }
 
 .name {
