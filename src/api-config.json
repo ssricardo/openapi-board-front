@@ -1,8 +1,0 @@
-{
-    "path": "/api/manager",
-    "apis": {
-        "namespaces": "/namespaces",
-        "getNamespace": "/:namespaceName",
-        "getApp": "/:namespaceName/:appName"
-    }
-}

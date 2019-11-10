@@ -9,5 +9,11 @@ export interface AppRecord {
     namespace: string,
     urlAddress?: string,
     version?: string,
-    apiSpec?: string
+    source?: string
+}
+
+/** Agregates Apps to be compared */
+export interface Comparison {
+    source: AppRecord,
+    compared: AppRecord 
 }

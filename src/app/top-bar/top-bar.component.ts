@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  public namespace: String = null;
+
+  constructor(router: Router) {
+    
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        let navEvt: NavigationEnd = e;
+        let parts = navEvt.url.split('/');
+        this.namespace = (parts.length < 2) ? null : parts[2];
+      }
+    });
+  }
 
   ngOnInit() {
   }
 
 }
-
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

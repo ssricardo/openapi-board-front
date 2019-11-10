@@ -1,7 +1,20 @@
-<a [routerLink]="['/']">
-  <h1>OpenAPI Board</h1>
-</a>
+<nav *ngIf="! namespace" class="start-top">
+    <h1>OpenAPI Board</h1>
+</nav>
+<nav *ngIf="namespace" class="page-top">
+  <a [routerLink]="['/']">
+    <h1>OpenAPI Board</h1>
+  </a>
+  <span class="hspacer"></span>
+  <span class="current-ns">
+    Namespace: <b>{{ namespace }}</b>
+  </span>
 
-<a [routerLink]="['/help']" class="button fancy-button">
-  <i class="material-icons">verified_user</i>TODO
-</a>
+  <a [routerLink]="['/app-list/' + namespace]" class="button fancy-button">
+    <i class="material-icons">view_headline</i>Apps
+  </a>
+
+  <a [routerLink]="['/']" class="button fancy-button">
+    <i class="material-icons">view_headline</i>Change
+  </a>
+</nav>

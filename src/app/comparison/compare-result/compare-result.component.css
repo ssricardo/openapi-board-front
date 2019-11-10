@@ -1,0 +1,13 @@
+section {
+    position: absolute;
+    left: 0;
+    right: 5px;
+    bottom: 0;
+    top: 90px;
+    overflow-x: hidden;
+}
+
+.diff-container {
+    width: 98%;
+    overflow: auto;
+}
