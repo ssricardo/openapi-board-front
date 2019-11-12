@@ -15,6 +15,9 @@ export class AppCardComponent implements OnInit {
   @Input()
   public namespace: string;
 
+  @Input()
+  public listIndex: number;
+
   constructor(private router: Router) { }
 
   ngOnInit() {

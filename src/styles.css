@@ -21,7 +21,7 @@ body {
 }
 
 router-outlet + *  {
-  padding: 0 16px;
+  padding: 0 12px;
 }
 
 /* Text */
@@ -107,9 +107,15 @@ label {
   padding-right: 4px;
 }
 
-/* Top Bar */
-
-
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Effects */
+@keyframes left-entering {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

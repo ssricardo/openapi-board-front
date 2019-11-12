@@ -2,6 +2,7 @@
     <h2>App on {{namespace}}</h2>
 
     <div class="app-list">
-      <app-card *ngFor="let item of appList" [namespace]="namespace" [app]="item"></app-card>
+      <app-card *ngFor="let item of appList; let i = index" 
+       [namespace]="namespace" [app]="item" [listIndex]="i"></app-card>
     </div>
 </section>
