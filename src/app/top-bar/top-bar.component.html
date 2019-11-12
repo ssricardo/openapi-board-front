@@ -1,20 +1,19 @@
-<nav *ngIf="! namespace" class="start-top">
-    <h1>OpenAPI Board</h1>
-</nav>
-<nav *ngIf="namespace" class="page-top">
-  <a [routerLink]="['/']">
-    <h1>OpenAPI Board</h1>
-  </a>
-  <span class="hspacer"></span>
-  <span class="current-ns">
-    Namespace: <b>{{ namespace }}</b>
+<nav [ngClass]="{'page-top': namespace, 'start-top': ! namespace}">
+  <h1>OpenAPI Board</h1>
+
+  <span class="ns-menu">
+    <span class="hspacer"></span>
+    <span class="current-ns">
+      Namespace: <b>{{ namespace }}</b>
+    </span>
+    <ng-template [ngIf]="namespace">
+    <a [routerLink]="['/app-list/' + namespace]" class="button fancy-button">
+      <i class="material-icons">view_headline</i>Apps
+    </a>
+    </ng-template>
+    <a [routerLink]="['/']" class="button fancy-button">
+      <i class="material-icons">dashboard</i>Change
+    </a>
   </span>
-
-  <a [routerLink]="['/app-list/' + namespace]" class="button fancy-button">
-    <i class="material-icons">view_headline</i>Apps
-  </a>
-
-  <a [routerLink]="['/']" class="button fancy-button">
-    <i class="material-icons">view_headline</i>Change
-  </a>
+  
 </nav>
