@@ -17,3 +17,10 @@ export interface Comparison {
     source: AppRecord,
     compared: AppRecord 
 }
+
+/** Maps validation errors comming from the server */
+export interface AppValidationError {
+    code: number, 
+    cause?: string,
+    rApp: string
+}

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { NgxTextDiffModule } from 'ngx-text-diff';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +18,12 @@ import { AppCardComponent } from './app-record/app-card/app-card.component';
 import { CompareResultComponent } from './comparison/compare-result/compare-result.component';
 import { CompareSelectionComponent } from './comparison/compare-selection/compare-selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationService } from './services/notification.service';
+import { ServerFailureHandler } from './services/server-failure-handler';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProgressInfoService } from './loading/progress-info.service';
+import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerContainerComponent } from './loading/spinner-container/spinner-container.component';
 
 @NgModule({
   imports: [
@@ -28,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     
     MatFormFieldModule, 
     MatSelectModule,
+    MatSnackBarModule, 
+    MatProgressSpinnerModule, 
 
     RouterModule.forRoot([
       { path: '', component: NamespaceListComponent },
@@ -44,8 +52,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppListComponent,
     AppCardComponent,
     CompareResultComponent,
-    CompareSelectionComponent
+    CompareSelectionComponent,
+    SpinnerContainerComponent
   ],
+  providers: [
+    NotificationService,
+    { provide: HTTP_INTERCEPTORS, useClass: ServerFailureHandler, multi: true }, 
+    { provide: HTTP_INTERCEPTORS, useClass: ProgressInfoService, multi: true }
+  ], 
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
