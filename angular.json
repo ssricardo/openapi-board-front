@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular.io-example": {
+    "angular.openapi-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular.io-example:build"
+            "browserTarget": "angular.openapi-front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular.io-example:build:production"
+              "browserTarget": "angular.openapi-front:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular.io-example:build"
+            "browserTarget": "angular.openapi-front:build"
           }
         },
         "test": {
@@ -107,16 +107,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular.io-example:serve"
+            "devServerTarget": "angular.openapi-front:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular.io-example:serve:production"
+              "devServerTarget": "angular.openapi-front:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular.io-example"
+  "defaultProject": "angular.openapi-front"
 }

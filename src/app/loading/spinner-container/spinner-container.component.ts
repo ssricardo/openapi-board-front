@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class SpinnerContainerComponent implements OnInit, OnDestroy {
 
-  private showSpinner = false;
+  public showSpinner = false;
 
   private subscription: Subscription;
 
