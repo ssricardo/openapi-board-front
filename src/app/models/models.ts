@@ -22,5 +22,31 @@ export interface Comparison {
 export interface AppValidationError {
     code: number, 
     cause?: string,
-    rApp: string
+    rapp: string
+}
+
+/** Refers to memory/examples */
+export interface RequestMemoryInputTO {
+    requestId?: number,
+    appName?: string;
+    namespace?: string;
+    path?: string;
+    title?: string,
+    body?: string,
+    methodType?: HttpMethod,
+    parameters?: Map<string, string>,
+    requestHeaders?: Map<string, string>
+}
+
+export enum HttpMethod {
+    GET = "GET",
+    POST = "POST",
+    PUT = "PUT",
+    DELETE = "DELETE",
+    PATCH = "PATCH"
+}
+
+export interface KeyValueString {
+    key:string,
+    value:string
 }
