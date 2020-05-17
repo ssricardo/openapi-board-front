@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { NgxTextDiffModule } from 'ngx-text-diff';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
@@ -24,25 +24,33 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProgressInfoService } from './loading/progress-info.service';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SpinnerContainerComponent } from './loading/spinner-container/spinner-container.component';
+import { SwaggerComponent } from './swagger/swagger.component';
+import { FormRecordComponent } from './form-record/form-record.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxTextDiffModule, 
-    
-    MatFormFieldModule, 
+    FormsModule,
+
+    NgxTextDiffModule,
+    MatFormFieldModule,
     MatSelectModule,
-    MatSnackBarModule, 
-    MatProgressSpinnerModule, 
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
 
     RouterModule.forRoot([
-      { path: '', component: NamespaceListComponent },
-      { path: 'app-list/:namespace', component: AppListComponent },
-      { path: 'compareto/:namespace/:app/:version', component: CompareSelectionComponent },
-      { path: 'compare-result/:app/:namespace/:version', component: CompareResultComponent },
-    ]), BrowserAnimationsModule
+      {path: '', component: NamespaceListComponent},
+      {path: 'app-list/:namespace', component: AppListComponent},
+      {path: 'compareto/:namespace/:app/:version', component: CompareSelectionComponent},
+      {path: 'compare-result/:app/:namespace/:version', component: CompareResultComponent},
+      {path: 'req-memory', component: FormRecordComponent},
+      {path: 'swagger/:namespace/:app', component: SwaggerComponent},
+    ]), BrowserAnimationsModule, MatRadioModule
   ],
   declarations: [
     AppComponent,
@@ -53,7 +61,9 @@ import { SpinnerContainerComponent } from './loading/spinner-container/spinner-c
     AppCardComponent,
     CompareResultComponent,
     CompareSelectionComponent,
-    SpinnerContainerComponent
+    SpinnerContainerComponent,
+    SwaggerComponent,
+    FormRecordComponent
   ],
   providers: [
     NotificationService,
