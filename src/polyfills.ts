@@ -72,6 +72,9 @@ import 'zone.js/dist/zone-patch-canvas';
  * APPLICATION IMPORTS
  */
 
+(window as any).global = window;
+// @ts-ignore
+window.Buffer = window.Buffer || require('buffer').Buffer;
 
 /*
 Copyright Google LLC. All Rights Reserved.

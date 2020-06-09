@@ -26,11 +26,12 @@ export class ServerFailureHandler implements HttpInterceptor {
           this.notificationService.showError(
             "Error! It was not possible to find a resource on the server. Check the configuration.");
         } else if (err.status >= 400 && err.status < 500) {
+            console.warn('Error from server: ' + err)
           let errMsg = err.error;
           let validationErr = this.getAsValidationErr(errMsg);
 
           if (validationErr) {
-            this.notificationService.showWarn(validationErr.cause + ` [Code ${validationErr.code}]`);
+            this.notificationService.showWarn(validationErr.cause + ` [Tracking code ${validationErr.code}]`, 7000);
           } else {
             this.notificationService.showWarn('Ops! You may have some invalid values on your request');
           }
@@ -46,7 +47,7 @@ export class ServerFailureHandler implements HttpInterceptor {
 
   private getAsValidationErr(inputErr): AppValidationError {
     if (inputErr instanceof Object) {
-      if (inputErr.code !== undefined && inputErr.rApp !== undefined) {
+      if (inputErr.code !== undefined && inputErr.rapp !== undefined) {
         return inputErr as AppValidationError;
       }
     }

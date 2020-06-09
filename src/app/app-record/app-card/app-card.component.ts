@@ -24,7 +24,7 @@ export class AppCardComponent implements OnInit {
   }
 
   public openApp() {
-    window.open(`/view/?nm=${encodeURIComponent(this.namespace)}&app=${this.app.name}`, '_blank');
+    window.open(`/swagger/${encodeURIComponent(this.namespace)}/${this.app.name}`, '_blank');
   }
 
   public goToCompare() {
