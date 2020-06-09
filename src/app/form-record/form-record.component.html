@@ -1,0 +1,57 @@
+<fieldset label="Request memory">
+	<h1>Store request</h1>
+	<form name="frMemory">
+		<div>
+			<label>Title: </label>
+			<span appearance="fill">
+				<input name="inTitle" [(ngModel)]="record.title" >
+			</span>
+		</div>
+		<div>
+			<label>Method: </label>
+			<span appearance="fill">
+				<select name="slMethod" required [(ngModel)]="record.methodType">
+					<option value=""></option>
+					<option value="GET">GET</option>
+					<option value="POST">POST</option>
+					<option value="PUT">PUT</option>
+					<option value="DELETE">DELETE</option>
+					<option *ngFor="let key of methodKeys" [value]="key" [label]="methodOptions[key]"></option>
+				</select>
+			</span>
+		</div>
+		<div>
+			<label>Path: </label>
+			<span appearance="fill">
+				<input name="inOperation" [(ngModel)]="record.path" >
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Headers (as JSON): </label>
+				<textarea name="inHeaders" matInput placeholder="Add a header per line"
+						  [(ngModel)]="allHeaders"></textarea>
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Parameters (as JSON): </label>
+				<textarea name="inParameters" matInput placeholder="Add a header per line"
+						  [(ngModel)]="allParameters"></textarea>
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Body: </label>
+				<textarea name="inBody" matInput placeholder="Request content"
+						  [(ngModel)]="record.body"></textarea>
+			</span>
+		</div>
+
+		<div>
+			<button class="button-reset" (click)="cancel()">Cancel</button>
+			<button mat-button (click)="save()">Submit</button>
+		</div>
+	</form>
+
+</fieldset>
