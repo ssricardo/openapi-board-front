@@ -7,7 +7,7 @@ class Api {
     static readonly POST_COMPARE = "/compare";
     static readonly GET_APP_VERSION = "/versions/:namespace/:appName";
     static readonly GET_API_SOURCE = "/source/:namespace/:appName";
-    static readonly PUT_EXAMPLE = "/api/app/requests";
+    static readonly EXAMPLES = "/api/app/requests";
 }
 
 export class Config {

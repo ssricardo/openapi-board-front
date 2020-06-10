@@ -46,6 +46,11 @@ export enum HttpMethod {
     PATCH = "PATCH"
 }
 
+export interface QueryResult<R> {
+    result: Array<R>,
+    complete: boolean
+}
+
 export interface KeyValueString {
     key:string,
     value:string

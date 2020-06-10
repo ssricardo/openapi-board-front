@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {AppNamespace, RequestMemoryInputTO} from "../models/models";
+import {AppNamespace, QueryResult, RequestMemoryTO} from "../models/models";
 import {Config} from "../app.config";
 import {NotificationService} from "./notification.service";
 
@@ -13,11 +13,13 @@ export class RequestMemoryService {
   constructor(private http: HttpClient,
 			  private notificationService: NotificationService) { }
 
-  public saveRequest(memory: RequestMemoryInputTO): Observable<any> {
+  private basePath = Config.API.EXAMPLES
+
+  public saveRequest(memory: RequestMemoryTO): Observable<any> {
   	if (! this.validateRequest(memory)) {
   		return throwError('Invalid request');
 	}
-    return this.http.put<AppNamespace[]>(Config.API.PUT_EXAMPLE, memory);
+    return this.http.put<AppNamespace[]>(this.basePath, memory);
   }
 
 	private validateRequest(memory: RequestMemoryInputTO) {
@@ -35,5 +37,14 @@ export class RequestMemoryService {
 			return false;
 		}
 		return true;
+	}
+
+	public removeRequestMemory(id: number): Observable<any> {
+  		console.log(`Remove item: ${id}`);
+  		return this.http.delete(`${this.basePath}/${id}`);
+	}
+
+	public search(filter: string, page: number = 0) : Observable<QueryResult<RequestMemoryTO>> {
+  		return this.http.get<QueryResult<RequestMemoryTO>>(this.basePath + `?q=${filter}&pg=${page}`);
 	}
 }
