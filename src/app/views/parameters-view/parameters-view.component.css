@@ -1,0 +1,35 @@
+:host {
+	width: 100%;
+}
+
+section {
+	margin: 10px 0;
+	border-bottom: 1px dashed #AAA;
+	background-color: #F5F5F5;
+	padding: 10px;
+}
+
+.field {
+	margin-bottom: 10px;
+}
+
+label {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.param-actions {
+	text-align: right;
+}
+
+.param-actions i {
+	font-size: 16px;
+}
+
+.items {
+	text-align: center;
+}
+
+.data-table {
+	width: 90%;
+}

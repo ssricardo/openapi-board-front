@@ -9,7 +9,6 @@ import { AppValidationError } from '../models/models'
  * Global handler for errors on http requests.
  * Standalizes handlering and delegates messages to notification service
  */
-
 @Injectable({
   providedIn: 'root'
 })

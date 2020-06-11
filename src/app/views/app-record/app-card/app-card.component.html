@@ -1,0 +1,19 @@
+<a (click)="openApp()" [ngStyle]="{'animation-duration': (listIndex / 7) + 's'}">
+    <section>
+        <h4>
+            <i class="col-icon material-icons">cloud</i>
+            <span class="name">{{ app.name }}</span>
+        </h4>
+
+        <div>
+            <div>
+                <label>Version: </label>
+                <span class="vers">{{ app.version }}</span>
+            </div>
+            <div (click)="goToCompare()" class="sp-compare">
+                <i class="material-icons">compare_arrows</i>
+                Compare
+            </div>
+        </div>
+    </section>
+</a>

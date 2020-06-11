@@ -1,0 +1,45 @@
+<section>
+  <h1><i class="material-icons">memory</i> Memorized Requests</h1>
+
+  <blockquote>
+    Items which are incorporated as Examples into OpenAPI definitions, created and viewed through SwaggerUI.
+  </blockquote>
+
+  <form label="Searching" class="filters" (submit)="searchMemoryList()">
+    <label for="inFilter">Filter: </label>
+    <input name="inFilter" id="inFilter" type="text" [(ngModel)]="filter" class="field" />
+    <input type="button" (click)="searchMemoryList()" value="Search" class="button primary" />
+  </form>
+
+  <div>
+    <table id="tbMemories2" class="data-table">
+      <tr>
+        <th>Id</th>
+        <th>Namespace</th>
+        <th>Application</th>
+        <th>Title</th>
+        <th>Path</th>
+        <th>Method</th>
+        <th>
+          <i class="material-icons">keyboard_hide</i>
+        </th>
+      </tr>
+      <tr *ngFor="let item of data">
+        <td>{{item.requestId}}</td>
+        <td>{{item.namespace}}</td>
+        <td>{{item.appName}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.path}}</td>
+        <td>{{item.methodType}}</td>
+        <td class="tb-action">
+          <a (click)="editItem(item)" title="Edit item"><i class="material-icons">edit</i></a>
+          <a (click)="removeItem(item)" title="Remove item"><i class="material-icons">delete</i></a>
+        </td>
+      </tr>
+    </table>
+
+    <div class="bottom-info">
+      {{data?.length || 0}} item(s) shown
+    </div>
+  </div>
+</section>

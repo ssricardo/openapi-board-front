@@ -1,0 +1,79 @@
+* {
+    color: #0E4378;
+}
+
+h4 {
+    margin: 0 0 10px 0;
+}
+
+a {
+    border: 1px outset #AAA;
+    border-radius: 7px;
+    padding: 20px;
+    line-height: 130%;
+    width: 250px;
+    min-height: 80px;
+    margin: 10px;    
+    display: block;    
+    align-items: center;
+    animation-name: left-entering;
+}
+
+a > section {
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-icon {
+    zoom: 1;
+    height: 100%;
+    align-items: center;
+}
+
+label {
+    font-style: italic;
+    display: inline-block;
+    color: #616161;
+}
+
+.vers {
+    color: #777;
+    zoom: 0.9;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.vers i {
+    zoom: 0.85;
+}
+
+.vers span:hover {
+    border: 1px solid;
+}
+
+.name {
+    font-weight: bold;
+    font-size: x-large;
+    margin-left: 20px;
+    color: darkorange;
+}
+
+a:hover {
+    background-color: #f0f0f0;
+}
+
+.sp-compare, .sp-compare > i {
+    height: 30px;
+    zoom: 0.75;
+    text-align: right;
+}
+
+.sp-compare:hover {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.sp-compare > i {
+    vertical-align: middle;
+}

@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  clear: left;
+  margin: 30px;
+}
+
+.card-item {
+  background-color: #F5F5F5;
+  height: 250px;
+  min-width: 250px;
+  padding: 40px 0;
+  vertical-align: middle;
+}
+
+.cards label {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.cards i {
+  font-size: 72px;
+}

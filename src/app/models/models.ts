@@ -26,7 +26,7 @@ export interface AppValidationError {
 }
 
 /** Refers to memory/examples */
-export interface RequestMemoryInputTO {
+export interface RequestMemoryTO {
     requestId?: number,
     appName?: string;
     namespace?: string;
@@ -34,8 +34,8 @@ export interface RequestMemoryInputTO {
     title?: string,
     body?: string,
     methodType?: HttpMethod,
-    parameters?: Map<string, string>,
-    requestHeaders?: Map<string, string>
+    parameters?: Array<ParameterMemory>,
+    requestHeaders?: Array<ParameterMemory>
 }
 
 export enum HttpMethod {
@@ -49,6 +49,20 @@ export enum HttpMethod {
 export interface QueryResult<R> {
     result: Array<R>,
     complete: boolean
+}
+
+export interface ParameterMemory {
+    id?: number,
+    name: string,
+    value: string,
+    kind: HttpMethod
+}
+
+export enum ParameterType {
+    QUERY = "QUERY",
+    PATH = "PATH",
+    MATRIX = "MATRIX",
+    HEADER = "HEADER"
 }
 
 export interface KeyValueString {

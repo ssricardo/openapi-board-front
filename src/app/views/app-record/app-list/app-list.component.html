@@ -1,0 +1,8 @@
+<section>
+    <h1><i class="material-icons">view_headline</i> Apps on {{namespace}}</h1>
+
+    <div class="app-list">
+      <app-card *ngFor="let item of appList; let i = index" 
+       [namespace]="namespace" [app]="item" [listIndex]="i"></app-card>
+    </div>
+</section>

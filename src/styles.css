@@ -15,7 +15,7 @@ body {
 .container {
   display: flex;
   flex-direction: row;
-  width: 920px;
+  width: 1050px;
   margin: 0 auto;
   align-items: center;
 }
@@ -40,6 +40,11 @@ h1, h2 {
 
 p {
   font-size: 14px;
+}
+
+.container h1 {
+  border-bottom: 1px solid;
+  width: 100%;
 }
 
 /* Hyperlink */
@@ -105,6 +110,34 @@ label {
 .fancy-button i.material-icons {
   color: #1976d2;
   padding-right: 4px;
+}
+
+/* For confirmation component */
+.allow-with-newlines {
+  white-space: pre-wrap;
+}
+
+/* Filtering sections */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: nowrap;
+  background-color: #F5F5F5;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.filters > * {
+  margin: 7px;
+  line-height: 20px;
+  height: 40px;
+  padding: 8px;
+}
+
+.filters > .field, .field input {
+  width: 100%;
 }
 
 html, body { height: 100%; }
