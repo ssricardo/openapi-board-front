@@ -1,0 +1,62 @@
+<section>
+	<h1><i class="material-icons">memory</i> Memorized Request</h1>
+
+	<form name="frMemory">
+		<div>
+			<label>Id: </label>
+			<span appearance="fill">
+				<input name="inId" [value]="record.requestId" readonly disabled />
+			</span>
+		</div>
+		<div>
+			<label>Title: </label>
+			<span appearance="fill">
+				<input name="inTitle" [(ngModel)]="record.title" >
+			</span>
+		</div>
+		<div>
+			<label>Method: </label>
+			<span appearance="fill">
+				<select name="slMethod" required [(ngModel)]="record.methodType" disabled title="Html method. This field can not be modified.">
+					<option value=""></option>
+					<option value="GET">GET</option>
+					<option value="POST">POST</option>
+					<option value="PUT">PUT</option>
+					<option value="DELETE">DELETE</option>
+					<option *ngFor="let item of methodKeys | keyvalue" [value]="item.key" [label]="item.value"></option>
+				</select>
+			</span>
+		</div>
+		<div>
+			<label>Path: </label>
+			<span appearance="fill">
+				<input name="inOperation" [(ngModel)]="record.path" disabled title="Relation to an operation. This field can not be modified." >
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Body: </label>
+				<textarea name="inBody" matInput placeholder="Request content"
+						  [(ngModel)]="record.body"></textarea>
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Headers: </label>
+				<app-parameters-view [dataSource]="record.requestHeaders" fixedType="Header"></app-parameters-view>
+			</span>
+		</div>
+		<div>
+			<span appearance="fill">
+				<label>Parameters: </label>
+				<app-parameters-view [dataSource]="record.parameters"></app-parameters-view>
+			</span>
+		</div>
+
+		<div class="action-buttons">
+			<button class="secondary" mat-button (click)="cancel()">Cancel</button>
+			<button mat-raised-button color="primary" (click)="save()">Submit</button>
+		</div>
+	</form>
+
+</section>

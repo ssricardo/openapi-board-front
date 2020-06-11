@@ -1,0 +1,14 @@
+<section>
+    <h1><i class="material-icons">group_work</i> Select a Namespace</h1>
+
+    <form class="filters" (submit)="onFilter(nmFilter.value)">
+            <input matInput id="nm-filter" #nmFilter type="text" placeholder="Typein to filter the list"
+             [value]="nmFilterVal" (keyup)="onFilter(nmFilter.value)" class="field" />
+        <button class="primary" (click)="onFilter(nmFilter.value)">Filter</button>
+    </form>
+
+    <div class="nm-result">
+        <namespace-info *ngFor="let nm of filteredList" [name]="nm">
+        </namespace-info>
+    </div>
+</section>

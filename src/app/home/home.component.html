@@ -1,0 +1,21 @@
+<section>
+  <h1 class=""><i class="material-icons">dashboard</i> Dashboard</h1>
+
+  <div>
+    <div class="cards">
+      <a [routerLink]="['/namespaces']" class="card-item">
+        <i class="material-icons">group_work</i>
+        <label>Namespaces</label>
+      </a>
+      <a [routerLink]="['/app-list/' + mainNamespace]" class="card-item"
+         title="Applications on main namespace">
+        <i class="material-icons">view_headline</i>
+        <label>Apps</label>
+      </a>
+      <a [routerLink]="['/memory-list']" class="card-item">
+        <i class="material-icons">memory</i>
+        <label>Requests Memory</label>
+      </a>
+    </div>
+  </div>
+</section>

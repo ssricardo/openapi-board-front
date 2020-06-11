@@ -22,7 +22,7 @@ export class RequestMemoryService {
     return this.http.put<AppNamespace[]>(this.basePath, memory);
   }
 
-	private validateRequest(memory: RequestMemoryInputTO) {
+	private validateRequest(memory: RequestMemoryTO) {
   		let valid = (memory.title && memory.title.trim().length > 0)
 		if (memory.requestId == undefined) {
 			valid = valid && (memory.appName && memory.appName.trim().length > 0)

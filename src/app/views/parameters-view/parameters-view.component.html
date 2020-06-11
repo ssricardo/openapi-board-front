@@ -1,0 +1,32 @@
+<section>
+  <div class="param-actions">
+    <button (click)="addItems()" title="Add parameter">
+      <i class="material-icons">add</i>
+      Add Parameter
+    </button>
+  </div>
+  <div class="items">
+    <table class="data-table">
+      <tr>
+        <th>Id</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Value</th>
+        <th><i class=" material-icons">keyboard_hide</i></th>
+      </tr>
+      <tr *ngFor="let item of dataSource; let i = index">
+        <td>{{item.id}}</td>
+        <td>
+          <select name="slType" required [(ngModel)]="item.kind" *ngIf="! fixedType">
+            <option *ngFor="let item of methodKeys | keyvalue" [value]="item.key" [label]="item.value"></option>
+          </select>
+          <span *ngIf="fixedType">{{fixedType}}</span>
+        </td>
+        <td><input name="in_name_{{i}}" type="text" [(ngModel)]="item.name"></td>
+        <td><input name="in_value_{{i}}" type="text" [(ngModel)]="item.value"></td>
+        <td><a (click)="removeItem(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
+      </tr>
+    </table>
+
+  </div>
+</section>

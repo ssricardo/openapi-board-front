@@ -1,0 +1,21 @@
+.namespace-item {
+    vertical-align: middle;
+    border-top: 1px solid #AAA;
+    padding: 12px 12px 12px 30px;
+}
+
+.namespace-item:hover {
+    background-color: #F5F5F5;
+}
+
+i {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    margin-right: 7px;
+    vertical-align: bottom;
+}
+
+.nm-value {
+    display: inline-block;
+}

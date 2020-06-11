@@ -1,0 +1,16 @@
+:host {
+    width: 100%;
+}
+
+.app-list {
+    display: flex;
+    width: 100%;
+    justify-content: initial;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.app-list > * {
+    margin: 7px 25px;
+}
