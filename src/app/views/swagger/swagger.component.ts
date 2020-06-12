@@ -33,9 +33,16 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    let apiUrl = Config.fullPath(Config.API.GET_API_SOURCE)
-        .replace(":namespace", encodeURIComponent(this.route.snapshot.paramMap.get("namespace")))
-        .replace(":appName", encodeURIComponent(this.route.snapshot.paramMap.get("app")));
+    let oabSelfDescribe = this.route.snapshot.queryParamMap.has("self-describe")
+
+    let apiUrl;
+    if (! oabSelfDescribe) {
+      apiUrl = Config.fullPath(Config.API.GET_API_SOURCE)
+          .replace(":namespace", encodeURIComponent(this.route.snapshot.paramMap.get("namespace")))
+          .replace(":appName", encodeURIComponent(this.route.snapshot.paramMap.get("app")));
+    } else {
+      apiUrl = Config.fullPath(Config.API.OAB_DEFINITIONS)
+    }
     let ref = this;
 
     const ui = SwaggerUI({
