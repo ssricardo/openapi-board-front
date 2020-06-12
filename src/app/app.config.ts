@@ -7,6 +7,7 @@ class Api {
     static readonly POST_COMPARE = "/compare";
     static readonly GET_APP_VERSION = "/versions?nm=:namespace&app=:appName";
     static readonly GET_API_SOURCE = "/source?nm=:namespace&app=:appName";
+    static readonly OAB_DEFINITIONS = "/describe";
     static readonly EXAMPLES = "/api/app/requests";
 }
 
