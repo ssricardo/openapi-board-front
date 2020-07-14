@@ -1,6 +1,7 @@
 /** Concentrates paths external to this app */
 
 class Api {
+    static readonly LOGIN = "/api/auth/login";
     static readonly NAMESPACES = "/namespaces";
     static readonly GET_NAMESPACE = "/namespaces/apps?nm=:namespace";
     static readonly GET_APP = "/apps?nm=:namespace&app=:appName";

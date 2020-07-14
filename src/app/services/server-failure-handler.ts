@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
 import { AppValidationError } from '../models/models'
+import {AuthenticationService} from "./authentication.service";
 
 /** 
  * Global handler for errors on http requests.
@@ -14,7 +15,8 @@ import { AppValidationError } from '../models/models'
 })
 export class ServerFailureHandler implements HttpInterceptor {
   
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService,
+              private authService: AuthenticationService) { }
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
@@ -24,6 +26,12 @@ export class ServerFailureHandler implements HttpInterceptor {
         if (err.status == 404) {
           this.notificationService.showError(
             "Error! It was not possible to find a resource on the server. Check the configuration.");
+        } else if (err.status == 401) {
+            if (! req.url.includes('login')) {
+                this.authService.logout()
+                this.notificationService.showWarn(
+                    "Access denied. You are not logged in or your authentication is expired. Please sign in.");
+            }
         } else if (err.status >= 400 && err.status < 500) {
             console.warn('Error from server: ' + err)
           let errMsg = err.error;
@@ -35,10 +43,8 @@ export class ServerFailureHandler implements HttpInterceptor {
             this.notificationService.showWarn('Ops! You may have some invalid values on your request');
           }
 
-          // return;
-        } else {          
+        } else {
           this.notificationService.showError('An unexpected issue happened. If it continues, please contact the administrator');
-          // return;
         }
         return throwError(err);
     }));
