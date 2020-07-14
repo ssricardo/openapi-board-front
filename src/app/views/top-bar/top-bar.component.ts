@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, NavigationEnd } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -11,14 +12,15 @@ export class TopBarComponent implements OnInit {
   public namespace: String = null;
   public isHome = true;
 
-  constructor(router: Router) {
+  constructor(router: Router,
+              private authService: AuthenticationService) {
     
     router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         let navEvt: NavigationEnd = e;
         let parts = navEvt.url.split('/');
         if (parts.length >= 2) {
-          this.isHome = parts[1] === '';
+          this.isHome = (parts[1] === '' || parts[1] === 'login');
         }
 
         this.namespace = (parts.length < 2) ? null : parts[2];
@@ -27,6 +29,10 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public logout() {
+    this.authService.logout();
   }
 
 }

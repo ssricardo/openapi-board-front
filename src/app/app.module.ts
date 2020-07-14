@@ -33,6 +33,9 @@ import {ConfirmDialogComponent} from "./confirm-dialog/ConfirmDialogComponent";
 import {MatButtonModule} from "@angular/material/button";
 import {HomeComponent} from './home/home.component';
 import { ParametersViewComponent } from './views/parameters-view/parameters-view.component';
+import { LoginComponent } from './views/login/login.component';
+import {AuthInterceptor} from "./auth/auth-interceptor";
+import {AuthGuard} from "./auth/auth.guard";
 
 @NgModule({
   imports: [
@@ -53,13 +56,14 @@ import { ParametersViewComponent } from './views/parameters-view/parameters-view
     MatDialogModule,
 
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'namespaces', component: NamespaceListComponent},
-      {path: 'app-list/:namespace', component: AppListComponent},
-      {path: 'compareto/:namespace/:app/:version', component: CompareSelectionComponent},
-      {path: 'compare-result/:app/:namespace/:version', component: CompareResultComponent},
-      {path: 'req-memory-form', component: FormRecordComponent},
-      {path: 'memory-list', component: MemoryListComponent},
+      {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent},
+      {path: 'namespaces', component: NamespaceListComponent, canActivate: [AuthGuard]},
+      {path: 'app-list/:namespace', component: AppListComponent, canActivate: [AuthGuard]},
+      {path: 'compareto/:namespace/:app/:version', component: CompareSelectionComponent, canActivate: [AuthGuard]},
+      {path: 'compare-result/:app/:namespace/:version', component: CompareResultComponent, canActivate: [AuthGuard]},
+      {path: 'req-memory-form', component: FormRecordComponent, canActivate: [AuthGuard]},
+      {path: 'memory-list', component: MemoryListComponent, canActivate: [AuthGuard]},
       {path: 'swagger/:namespace/:app', component: SwaggerComponent},
       {path: 'confirm-dialog', component: ConfirmDialogComponent},
     ]), BrowserAnimationsModule
@@ -79,13 +83,15 @@ import { ParametersViewComponent } from './views/parameters-view/parameters-view
     MemoryListComponent,
     ConfirmDialogComponent,
     HomeComponent,
-    ParametersViewComponent
+    ParametersViewComponent,
+    LoginComponent
   ],
   providers: [
     NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: ServerFailureHandler, multi: true }, 
-    { provide: HTTP_INTERCEPTORS, useClass: ProgressInfoService, multi: true }
-  ], 
+    { provide: HTTP_INTERCEPTORS, useClass: ProgressInfoService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

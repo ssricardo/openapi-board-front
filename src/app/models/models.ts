@@ -69,3 +69,11 @@ export interface KeyValueString {
     key:string,
     value:string
 }
+
+export interface LoginData {
+    user: string,
+    password: string
+}
+
+export interface LoggedUser {
+}
