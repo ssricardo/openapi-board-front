@@ -7,7 +7,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {FormRecordComponent} from "../form-record/form-record.component";
 import {HttpMethod, ParameterMemory, RequestMemoryTO} from "../../models/models";
 import {AuthenticationService} from "../../services/authentication.service";
-import {HttpHeaders} from "@angular/common/http";
 import {AuthInterceptor} from "../../auth/auth-interceptor";
 
 /**
@@ -19,12 +18,6 @@ import {AuthInterceptor} from "../../auth/auth-interceptor";
   templateUrl: './swagger.component.html',
 })
 export class SwaggerComponent implements OnInit, AfterViewInit {
-
-  private options = {
-    swaggerOptions: {
-      url: 'none'
-    }
-  }
 
   constructor(private appService: AppRegistryService,
               private route: ActivatedRoute,
