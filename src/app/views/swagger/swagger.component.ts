@@ -6,6 +6,9 @@ import {Config} from "../../app.config";
 import {MatDialog} from "@angular/material/dialog";
 import {FormRecordComponent} from "../form-record/form-record.component";
 import {HttpMethod, ParameterMemory, RequestMemoryTO} from "../../models/models";
+import {AuthenticationService} from "../../services/authentication.service";
+import {HttpHeaders} from "@angular/common/http";
+import {AuthInterceptor} from "../../auth/auth-interceptor";
 
 /**
  * Wrapper for Swagger UI, adding some customization by manipulating Swaggers DOM
@@ -27,7 +30,8 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private el: ElementRef,
               private render: Renderer2,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -53,7 +57,12 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
       presets: [
         SwaggerUI.presets.apis
       ],
-      onComplete: ref.onSwaggerReady()
+      responseInterceptor: function() { ref.onSwaggerReady() },
+      requestInterceptor: function(request) {
+        console.log('Token: ' + ref.authService.getRawToken());
+        request.headers[AuthInterceptor.AUTHORIZATION_HEADER] = 'Bearer ' + ref.authService.getRawToken();
+        return request;
+      }
     });
   }
 
@@ -76,7 +85,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
           childList: true
         });
       })
-    }, 900);
+    }, 300);
 
   }
 
