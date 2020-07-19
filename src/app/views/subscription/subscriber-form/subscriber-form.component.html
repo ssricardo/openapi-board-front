@@ -1,0 +1,42 @@
+<section>
+  <h1><i class="material-icons">notification_important</i> {{(newItem) ? 'Edit' : 'Create'}} Subscription</h1>
+
+  <form name="frSubscriber" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email"
+             id="email"
+             class="form-control"
+             [(ngModel)]="form.email"
+             required
+             #email="ngModel" />
+      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid" >
+        E-mail is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="appName">Password</label>
+      <input
+              type="text"
+              class="form-control"
+              id="appName"
+              [(ngModel)]="form.appName"
+              required
+              #appName="ngModel" />
+      <div class="alert alert-danger"
+           role="alert"
+           *ngIf="f.submitted && appName.invalid">
+        <div *ngIf="appName.errors.required">Application is required</div>
+      </div>
+    </div>
+
+    <div class="form-group action-bar">
+      <div class="action-buttons">
+        <button class="secondary" mat-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()">Submit</button>
+      </div>
+    </div>
+
+  </form>
+</section>

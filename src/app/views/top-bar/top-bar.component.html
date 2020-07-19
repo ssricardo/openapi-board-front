@@ -19,6 +19,12 @@
         <i class="material-icons disabled">view_headline</i>Apps
       </a>
     </ng-template>
+    <ng-template [ngIf]="true" ]>
+      <a [routerLink]="['/subs-list']" class="button fancy-button"
+         title="Subscriptions">
+        <i class="material-icons">notification_important</i>Subscriptions
+      </a>
+    </ng-template>
     <a [routerLink]="['/memory-list']" class="button fancy-button"
      title="Manage memorized requests">
       <i class="material-icons">memory</i>Requests Memory
