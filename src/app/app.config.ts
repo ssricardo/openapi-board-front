@@ -10,6 +10,7 @@ class Api {
     static readonly GET_API_SOURCE = "/source?nm=:namespace&app=:appName";
     static readonly OAB_DEFINITIONS = "/describe";
     static readonly EXAMPLES = "/api/app/requests";
+    static readonly SUBSCRIPTIONS = "/api/subs";
 }
 
 export class Config {
