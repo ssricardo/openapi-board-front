@@ -1,0 +1,26 @@
+:host, form {
+	width: 100%;
+}
+
+input, textarea {
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+select {
+	border-radius: 3px;
+	border: 1px solid;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+button {
+	margin: 5px;
+}
+
+.action-buttons {
+	text-align: right;
+}
