@@ -76,6 +76,8 @@ export interface LoginData {
 }
 
 export interface LoggedUser {
+    name: string,
+    roles: Array<string>
 }
 
 export interface AlertSubscriber {

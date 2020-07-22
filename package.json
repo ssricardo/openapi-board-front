@@ -13,14 +13,15 @@
     "@angular/platform-browser": "8.2.8",
     "@angular/platform-browser-dynamic": "8.2.8",
     "@angular/router": "8.2.8",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
     "angular-in-memory-web-api": "0.8.0",
     "core-js": "2.6.9",
+    "jwt-decode": "^2.2.0",
     "ngx-text-diff": "^0.5.4",
     "rxjs": "^6.5.5",
     "swagger-ui": "^3.24.3",
     "tslib": "1.10.0",
-    "zone.js": "^0.9.1",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.0"
+    "zone.js": "^0.9.1"
   },
   "scripts": {
     "ng": "ng",

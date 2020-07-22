@@ -16,19 +16,39 @@
     </div>
 
     <div class="form-group">
-      <label for="appName">Password</label>
-      <input
-              type="text"
-              class="form-control"
-              id="appName"
-              [(ngModel)]="form.appName"
-              required
-              #appName="ngModel" />
+      <label for="appName">Application: </label>
+      <mat-form-field class="form-line" >
+        <mat-label>Select namespace</mat-label>
+        <mat-select id="appName" required [(value)]="form.appId"
+         #appName>
+          <mat-option *ngFor="let ap of appList" [value]="ap.name">
+            {{ap.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <div class="alert alert-danger"
            role="alert"
            *ngIf="f.submitted && appName.invalid">
         <div *ngIf="appName.errors.required">Application is required</div>
       </div>
+    </div>
+
+    <div class="param-actions">
+      <button (click)="addPath()" title="Add parameter">
+        <i class="material-icons">add</i>
+        Add Parameter
+      </button>
+    </div>
+
+    <div>
+      <label for="appName">Base Paths: </label>
+      <table class="data-table">
+        <tr *ngFor="let item of pathList; let i = index">
+          <td><input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"></td>
+          <td><a (click)="removePath(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
+        </tr>
+      </table>
     </div>
 
     <div class="form-group action-bar">

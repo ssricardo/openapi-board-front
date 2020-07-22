@@ -1,14 +1,15 @@
 <section>
   <h1><i class="material-icons">notification_important</i> Alert Subscriptions</h1>
-  <div class="actions mat-toolbar">
-    <button mat-button (click)="addNewSubscription()">Add</button>
-  </div>
 
   <form label="Searching" class="filters" (submit)="filterSubscriber()">
     <label for="inFilter">Filter: </label>
     <input name="inFilter" id="inFilter" type="text" [(ngModel)]="filter" class="field" />
     <input type="button" (click)="filterSubscriber()" value="Search" class="button primary" />
   </form>
+
+  <div class="actions mat-toolbar">
+    <button mat-button (click)="addNewSubscription()" class="button secondary">Add</button>
+  </div>
 
   <div class="data">
     <table id="tbSubscribers" class="data-table">

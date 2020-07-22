@@ -22,12 +22,12 @@ export class SubscriberListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log('Looking up subscribers');
 		this.service.listAllSubscription()
 			.subscribe(res => {
 				this.completeList = res
 				this.filterSubscriber();
 			});
-
 	}
 
 	filterSubscriber() {
@@ -36,12 +36,12 @@ export class SubscriberListComponent implements OnInit {
 	}
 
 	addNewSubscription() {
-		this.router.navigate(['subs-edit', null]);
+		this.router.navigate(['subs-edit']);
 	}
 
 	editItem(item: AlertSubscriber) {
 		let itemCopy = Object.assign({}, item);
-		this.router.navigate(['subs-edit', itemCopy]);
+		this.router.navigate(['subs-edit'], {state: itemCopy});
 	}
 
 	removeItem(item: AlertSubscriber) {
