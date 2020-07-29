@@ -82,7 +82,6 @@ export interface LoggedUser {
 
 export interface AlertSubscriber {
     id?: number,
-    appId: number,
     appName: string,
     email: string,
     basePathList: Array<string>

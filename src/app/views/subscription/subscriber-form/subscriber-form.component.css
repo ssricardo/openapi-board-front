@@ -24,3 +24,11 @@ button {
 .action-buttons {
 	text-align: right;
 }
+
+.w50 {
+	width: 50%;
+}
+
+.data-table {
+	width: 100%;
+}

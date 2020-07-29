@@ -26,7 +26,7 @@
         <td>{{item.id}}</td>
         <td>{{item.appName}}</td>
         <td>{{item.email}}</td>
-        <td>{{item.basePathList.join(',<br />')}}</td>
+        <td innerHTML="{{formatPaths(item.basePathList)}}"></td>
         <td class="tb-action">
           <a (click)="editItem(item)" title="Edit item"><i class="material-icons">edit</i></a>
           <a (click)="removeItem(item)" title="Remove item"><i class="material-icons">delete</i></a>

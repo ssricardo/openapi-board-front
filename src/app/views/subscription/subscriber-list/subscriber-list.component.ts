@@ -39,6 +39,13 @@ export class SubscriberListComponent implements OnInit {
 		this.router.navigate(['subs-edit']);
 	}
 
+	formatPaths(paths: Array<string>): string {
+		if (! paths) {
+			return null;
+		}
+		return paths.join(',<br />');
+	}
+
 	editItem(item: AlertSubscriber) {
 		let itemCopy = Object.assign({}, item);
 		this.router.navigate(['subs-edit'], {state: itemCopy});
