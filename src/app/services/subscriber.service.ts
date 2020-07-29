@@ -18,10 +18,13 @@ export class SubscriberService {
   }
 
   public saveSubscription(payload: AlertSubscriber): Observable<any> {
-    return this.http.post<AlertSubscriber>(Config.API.SUBSCRIPTIONS, payload);
+    return this.http.put<AlertSubscriber>(Config.API.SUBSCRIPTIONS, payload);
   }
 
   public deleteSubscription(id: number): Observable<any> {
+    if (! id) {
+      console.error('No id set for delete subscription')
+    }
     return this.http.delete(`${Config.API.SUBSCRIPTIONS}/${id}`);
   }
 

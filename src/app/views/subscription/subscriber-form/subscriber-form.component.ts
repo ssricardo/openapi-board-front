@@ -20,7 +20,7 @@ export class SubscriberFormComponent implements OnInit {
   newItem: boolean;
   appList: Array<AppRecord> = []
   form: AlertSubscriber = {
-    appId: 0, appName: "", basePathList: [], email: ""
+    appName: '', basePathList: [], email: ""
   };
   pathList: Array<PathItem> = [];
 
@@ -28,8 +28,8 @@ export class SubscriberFormComponent implements OnInit {
               private service: SubscriberService,
               private appService: AppRegistryService,
               private notificationService: NotificationService) {
-    if (route.getCurrentNavigation().extras.state && route.getCurrentNavigation().extras.state.item) {
-      this.form = route.getCurrentNavigation().extras.state.item as AlertSubscriber;
+    if (route.getCurrentNavigation().extras.state) {
+      this.form = route.getCurrentNavigation().extras.state as AlertSubscriber;
     }
   }
 
@@ -41,7 +41,7 @@ export class SubscriberFormComponent implements OnInit {
     this.form.basePathList = this.pathList.map(i => i.value);
     this.service.saveSubscription(this.form)
         .subscribe(res => {
-          this.notificationService.showSuccess("Subscription saved successfully")
+          this.notificationService.showSuccess("Subscription saved successfully");
         })
     return true;
   }

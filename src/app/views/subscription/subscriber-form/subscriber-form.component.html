@@ -6,21 +6,22 @@
       <label for="email">E-mail</label>
       <input type="email"
              id="email"
+             name="email"
              class="form-control"
              [(ngModel)]="form.email"
              required
-             #email="ngModel" />
-      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid" >
+             #mailField="ngModel" />
+      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mailField.invalid" >
         E-mail is required!
       </div>
     </div>
 
     <div class="form-group">
-      <label for="appName">Application: </label>
-      <mat-form-field class="form-line" >
-        <mat-label>Select namespace</mat-label>
-        <mat-select id="appName" required [(value)]="form.appId"
-         #appName>
+      <label for="appNameSel">Application: </label>
+      <mat-form-field class="form-line w50" >
+        <mat-label>Select application</mat-label>
+        <mat-select id="appNameSel" required [(value)]="form.appName"
+         #appNameSel>
           <mat-option *ngFor="let ap of appList" [value]="ap.name">
             {{ap.name}}
           </mat-option>
@@ -34,16 +35,20 @@
       </div>
     </div>
 
-    <div class="param-actions">
-      <button (click)="addPath()" title="Add parameter">
-        <i class="material-icons">add</i>
-        Add Parameter
-      </button>
-    </div>
-
-    <div>
-      <label for="appName">Base Paths: </label>
+    <div class="w50">
+      <label for="appName">Path filtering: </label>
+      <div class="action-buttons">
+        <button type="button" (click)="addPath()" title="Add parameter"
+         class="mat-button secondary">
+          <i class="material-icons">add</i>
+          Add Parameter
+        </button>
+      </div>
       <table class="data-table">
+        <tr>
+          <th>Base Path</th>
+          <th><i class="material-icons">keyboard_hide</i></th>
+        </tr>
         <tr *ngFor="let item of pathList; let i = index">
           <td><input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"></td>
           <td><a (click)="removePath(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
@@ -53,8 +58,8 @@
 
     <div class="form-group action-bar">
       <div class="action-buttons">
-        <button class="secondary" mat-button (click)="cancel()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="save()">Submit</button>
+        <button type="button" class="secondary" mat-button (click)="cancel()">Cancel</button>
+        <button type="button" mat-raised-button color="primary" (click)="save()">Submit</button>
       </div>
     </div>
 
