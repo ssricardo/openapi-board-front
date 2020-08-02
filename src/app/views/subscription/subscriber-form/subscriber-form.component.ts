@@ -30,6 +30,10 @@ export class SubscriberFormComponent implements OnInit {
               private notificationService: NotificationService) {
     if (route.getCurrentNavigation().extras.state) {
       this.form = route.getCurrentNavigation().extras.state as AlertSubscriber;
+      this.pathList = this.form.basePathList.map(p => { 
+        let item: PathItem = { value: p }
+        return item;
+      });
     }
   }
 
@@ -42,6 +46,7 @@ export class SubscriberFormComponent implements OnInit {
     this.service.saveSubscription(this.form)
         .subscribe(res => {
           this.notificationService.showSuccess("Subscription saved successfully");
+          this.route.navigate(['subs-list']);
         })
     return true;
   }

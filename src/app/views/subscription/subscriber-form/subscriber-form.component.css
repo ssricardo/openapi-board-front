@@ -25,10 +25,22 @@ button {
 	text-align: right;
 }
 
+.actions-top {
+	padding: 7px 20px;
+}
+
 .w50 {
 	width: 50%;
 }
 
 .data-table {
 	width: 100%;
+}
+
+.data-table th {
+    border-bottom: 1px solid;
+}
+
+.data-table td:nth-child(2) {
+    text-align: center;
 }

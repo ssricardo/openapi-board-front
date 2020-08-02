@@ -21,7 +21,7 @@
 }
 
 .tb-action {
-	justify-content: space-evenly;
+	text-align: center;
 }
 
 .bottom-info {
@@ -31,5 +31,6 @@
 }
 
 .actions  {
+	padding: 5px 10px;
 	text-align: right;
 }

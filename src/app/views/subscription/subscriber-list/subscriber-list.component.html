@@ -1,15 +1,18 @@
 <section>
   <h1><i class="material-icons">notification_important</i> Alert Subscriptions</h1>
 
+  <div class="actions mat-toolbar">
+    <button mat-button (click)="addNewSubscription()" color="primary">
+      <i class="material-icons">add</i>
+      Add
+    </button>
+  </div>
+
   <form label="Searching" class="filters" (submit)="filterSubscriber()">
     <label for="inFilter">Filter: </label>
     <input name="inFilter" id="inFilter" type="text" [(ngModel)]="filter" class="field" />
     <input type="button" (click)="filterSubscriber()" value="Search" class="button primary" />
   </form>
-
-  <div class="actions mat-toolbar">
-    <button mat-button (click)="addNewSubscription()" class="button secondary">Add</button>
-  </div>
 
   <div class="data">
     <table id="tbSubscribers" class="data-table">
@@ -28,7 +31,7 @@
         <td>{{item.email}}</td>
         <td innerHTML="{{formatPaths(item.basePathList)}}"></td>
         <td class="tb-action">
-          <a (click)="editItem(item)" title="Edit item"><i class="material-icons">edit</i></a>
+          <a (click)="editItem(item)" title="Edit item"><i class="material-icons">edit</i></a> 
           <a (click)="removeItem(item)" title="Remove item"><i class="material-icons">delete</i></a>
         </td>
       </tr>

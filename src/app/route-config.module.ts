@@ -28,8 +28,8 @@ const routes: Routes = [
   {path: 'confirm-dialog', component: ConfirmDialogComponent},
 
     // Subscribers
-  {path: 'subs-list', component: SubscriberListComponent},
-  {path: 'subs-edit', component: SubscriberFormComponent}
+  {path: 'subs-list', component: SubscriberListComponent, canActivate: [AuthGuard]},
+  {path: 'subs-edit', component: SubscriberFormComponent, canActivate: [AuthGuard]}
 ];
 
 

@@ -4,8 +4,8 @@
 	<form name="frMemory">
 		<div>
 			<label>Id: </label>
-			<span appearance="fill">
-				<input name="inId" [value]="record.requestId" readonly disabled />
+			<span appearance="fill text-output">
+				{{record.requestId || 'New entry'}}
 			</span>
 		</div>
 		<div>
@@ -36,8 +36,10 @@
 		<div>
 			<span appearance="fill">
 				<label>Body: </label>
-				<textarea name="inBody" matInput placeholder="Request content"
+				<pre>
+					<textarea name="inBody" matInput placeholder="Request content"
 						  [(ngModel)]="record.body"></textarea>
+				</pre>
 			</span>
 		</div>
 		<div>
