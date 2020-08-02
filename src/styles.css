@@ -35,7 +35,7 @@ h2 {
   font-size: 20px;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-weight: lighter;
 }
 
@@ -43,7 +43,7 @@ p {
   font-size: 14px;
 }
 
-.container h1 {
+.container h1, .container h2, .container h3 {
   border-bottom: 1px solid;
   width: 100%;
 }
@@ -112,6 +112,7 @@ label {
   color: #1976d2;
   padding-right: 4px;
 }
+
 
 /* For confirmation component */
 .allow-with-newlines {

@@ -50,7 +50,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
       presets: [
         SwaggerUI.presets.apis
       ],
-      responseInterceptor: function() { ref.onSwaggerReady() },
+      onComplete: ref.onSwaggerReady(),
       requestInterceptor: function(request) {
         console.log('Token: ' + ref.authService.getRawToken());
         request.headers[AuthInterceptor.AUTHORIZATION_HEADER] = 'Bearer ' + ref.authService.getRawToken();
@@ -78,7 +78,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
           childList: true
         });
       })
-    }, 300);
+    }, 900);
 
   }
 
