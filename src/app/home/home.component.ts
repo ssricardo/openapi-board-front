@@ -1,16 +1,27 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Config} from "../app.config";
+import { AuthenticationService } from '../services/authentication.service';
+import { LoggedUser } from '../models/models';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+  private user: LoggedUser = null;
   public mainNamespace: string;
 
-  constructor() {
+  constructor(private authService: AuthenticationService) {
     this.mainNamespace = Config.MAIN_NAMESPACE;
+  }
+
+  ngOnInit(): void {
+    this.user = this.authService.getUser();
+  }
+
+  public get showSubscriptions(): boolean {
+    return (this.user && this.user.roles.indexOf('MANAGER') > -1);
   }
 }

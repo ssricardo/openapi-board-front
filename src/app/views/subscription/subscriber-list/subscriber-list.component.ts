@@ -3,6 +3,8 @@ import {AlertSubscriber} from "../../../models/models";
 import {SubscriberService} from "../../../services/subscriber.service";
 import {NotificationService} from "../../../services/notification.service";
 import {Router} from "@angular/router";
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/confirm-dialog/ConfirmDialogComponent';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-subscriber-list',
@@ -18,7 +20,8 @@ export class SubscriberListComponent implements OnInit {
 
 	constructor(private service: SubscriberService,
 				private router: Router,
-				private notificationService: NotificationService) {
+				private notificationService: NotificationService,
+				private dialog: MatDialog) {
 	}
 
 	ngOnInit() {
@@ -52,8 +55,20 @@ export class SubscriberListComponent implements OnInit {
 	}
 
 	removeItem(item: AlertSubscriber) {
-		this.service.deleteSubscription(item.id)
-			.subscribe(r => this.notificationService.showSuccess('Item successfully removed'));
-		this.ngOnInit();
+		let ref = this;
+		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+			maxWidth: "400px",
+			data: new ConfirmDialogModel("Confirm Action", `Delete subscription? \n${item.appName}: ${item.email}`)
+		  });
+	  
+		  dialogRef.afterClosed().subscribe(dialogResult => {
+			if (dialogResult) {
+				ref.service.deleteSubscription(item.id)
+					.subscribe(r => { 
+						ref.notificationService.showSuccess('Item successfully removed');
+						ref.ngOnInit();
+					});
+			}
+		  });		
 	}
 }

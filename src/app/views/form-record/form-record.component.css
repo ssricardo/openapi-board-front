@@ -23,3 +23,7 @@ button {
 .action-buttons {
 	text-align: right;
 }
+
+.ta-code {
+	min-height: 200px;
+}
