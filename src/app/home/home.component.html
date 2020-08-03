@@ -16,6 +16,12 @@
         <i class="material-icons">memory</i>
         <label>Requests Memory</label>
       </a>
+      <ng-template [ngIf]="showSubscriptions">
+        <a [routerLink]="['/subs-list']" class="card-item">
+          <i class="material-icons">notification_important</i>
+          <label>Subscriptions</label>
+        </a>
+    </ng-template>
     </div>
   </div>
 </section>

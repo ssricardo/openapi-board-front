@@ -14,16 +14,16 @@
         <i class="material-icons">view_headline</i>Apps
       </a>
     </ng-template>
+    <a [routerLink]="['/memory-list']" class="button fancy-button"
+     title="Manage memorized requests">
+      <i class="material-icons">memory</i>Requests Memory
+    </a>
     <ng-template [ngIf]="showSubscriptions" ]>
       <a [routerLink]="['/subs-list']" class="button fancy-button"
          title="Subscriptions">
         <i class="material-icons">notification_important</i>Subscriptions
       </a>
     </ng-template>
-    <a [routerLink]="['/memory-list']" class="button fancy-button"
-     title="Manage memorized requests">
-      <i class="material-icons">memory</i>Requests Memory
-    </a>
     <a (click)="logout()" class="button fancy-button logout-bt"
        title="Manage memorized requests">
       <i class="material-icons">logout</i>Logout
