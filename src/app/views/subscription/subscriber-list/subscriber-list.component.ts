@@ -4,7 +4,7 @@ import {SubscriberService} from "../../../services/subscriber.service";
 import {NotificationService} from "../../../services/notification.service";
 import {Router} from "@angular/router";
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/confirm-dialog/ConfirmDialogComponent';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-subscriber-list',
