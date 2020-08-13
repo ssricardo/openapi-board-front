@@ -14,7 +14,6 @@
     "@angular/platform-browser-dynamic": "9.1.12",
     "@angular/router": "9.1.12",
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
-    "angular-in-memory-web-api": "0.8.0",
     "core-js": "2.6.9",
     "g": "^2.0.1",
     "jwt-decode": "^2.2.0",
@@ -22,7 +21,7 @@
     "rxjs": "^6.5.5",
     "swagger-ui": "^3.24.3",
     "tslib": "1.10.0",
-    "zone.js": "^0.10.3"
+    "zone.js": "^0.10.1"
   },
   "scripts": {
     "ng": "ng",

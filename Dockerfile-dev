@@ -5,10 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm ci
-#npm install
 
 COPY . .
 
-RUN npm install -g @angular/cli@7.0.2
+# RUN npm install -g @angular/cli@7.0.2
 
-CMD ng serve --liveReload=false --watch=false --host 0.0.0.0 --disable-host-check
+CMD npm run ng serve -- --liveReload=false --watch=false --host=0.0.0.0 --disable-host-check --prod

@@ -1,6 +1,6 @@
 
 ### Building ###
-FROM node:10-alpine as builder
+FROM node:12-alpine as builder
 
 WORKDIR /app
 
@@ -18,5 +18,7 @@ RUN npm run ng build --prod
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]
