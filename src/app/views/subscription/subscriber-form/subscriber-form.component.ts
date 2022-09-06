@@ -17,7 +17,7 @@ export interface PathItem {
 })
 export class SubscriberFormComponent implements OnInit {
 
-  newItem: boolean;
+  newItem: boolean = false;
   appList: Array<AppRecord> = []
   form: AlertSubscriber = {
     appName: '', basePathList: [], email: ""
@@ -28,8 +28,8 @@ export class SubscriberFormComponent implements OnInit {
               private service: SubscriberService,
               private appService: AppRegistryService,
               private notificationService: NotificationService) {
-    if (route.getCurrentNavigation().extras.state) {
-      this.form = route.getCurrentNavigation().extras.state as AlertSubscriber;
+    if (route.getCurrentNavigation()?.extras.state) {
+      this.form = route.getCurrentNavigation()!.extras.state as AlertSubscriber;
       this.pathList = this.form.basePathList.map(p => { 
         let item: PathItem = { value: p }
         return item;

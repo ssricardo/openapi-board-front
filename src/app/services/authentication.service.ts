@@ -4,7 +4,7 @@ import {Observable, Subject} from "rxjs";
 import {LoggedUser, LoginData} from "../models/models";
 import {Config} from "../app.config";
 
-import * as jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 const AUTH_TOKEN = 'auth-token';
 

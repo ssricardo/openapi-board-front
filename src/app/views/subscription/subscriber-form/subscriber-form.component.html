@@ -20,8 +20,7 @@
       <label for="appNameSel">Application: </label>
       <mat-form-field class="form-line w50" >
         <mat-label>Select application</mat-label>
-        <mat-select id="appNameSel" required [(value)]="form.appName"
-         #appNameSel>
+        <mat-select id="appNameSel" required [(value)]="form.appName" #appNameSel>
           <mat-option *ngFor="let ap of appList" [value]="ap.name">
             {{ap.name}}
           </mat-option>

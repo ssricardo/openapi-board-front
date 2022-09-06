@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {NgxTextDiffModule} from 'ngx-text-diff';
+// import {NgxTextDiffModule} from 'ngx-text-diff';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -37,15 +37,19 @@ import {AuthInterceptor} from "./auth/auth-interceptor";
 import {SubscriberListComponent} from './views/subscription/subscriber-list/subscriber-list.component';
 import {SubscriberFormComponent} from './views/subscription/subscriber-form/subscriber-form.component';
 import {RouteConfigModule} from "./route-config.module";
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
+    CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    RouterModule,
 
-    NgxTextDiffModule,
+    // NgxTextDiffModule,
 
     // Material
     MatFormFieldModule,

@@ -16,6 +16,7 @@ import {AuthInterceptor} from "../../auth/auth-interceptor";
 @Component({
   selector: 'app-swagger',
   templateUrl: './swagger.component.html',
+  styleUrls: ['./swagger.component.css']
 })
 export class SwaggerComponent implements OnInit, AfterViewInit {
 
