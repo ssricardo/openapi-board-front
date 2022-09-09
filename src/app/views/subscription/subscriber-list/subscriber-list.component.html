@@ -18,7 +18,7 @@
     <table id="tbSubscribers" class="data-table">
       <tr>
         <th>Id</th>
-        <th>Application</th>
+        <th>API</th>
         <th>E-mail</th>
         <th>Paths</th>
         <th>
@@ -27,7 +27,7 @@
       </tr>
       <tr *ngFor="let item of data">
         <td>{{item.id}}</td>
-        <td>{{item.appName}}</td>
+        <td>{{item.apiName}}</td>
         <td>{{item.email}}</td>
         <td innerHTML="{{formatPaths(item.basePathList)}}"></td>
         <td class="tb-action">

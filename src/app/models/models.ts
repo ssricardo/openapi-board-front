@@ -1,10 +1,10 @@
-/** Namespaces are simple names grouping Apps */
-export interface AppNamespace {
+/** Namespaces are simple names grouping Apis */
+export interface ApiNamespace {
     name: string
 }
 
 /** Main entity, refers to a real App and its API metadata */
-export interface AppRecord {
+export interface ApiRecord {
     name: string, 
     namespace: string,
     urlAddress?: string,
@@ -12,23 +12,23 @@ export interface AppRecord {
     source?: string
 }
 
-/** Agregates Apps to be compared */
+/** Agregates Apis to be compared */
 export interface Comparison {
-    source: AppRecord,
-    compared: AppRecord 
+    source: ApiRecord,
+    compared: ApiRecord 
 }
 
 /** Maps validation errors comming from the server */
 export interface AppValidationError {
     code: number, 
     cause?: string,
-    rapp: string
+    errorOrigin: string
 }
 
 /** Refers to memory/examples */
 export interface RequestMemoryTO {
     requestId?: number,
-    appName?: string;
+    apiName?: string;
     namespace?: string;
     path?: string;
     title?: string,
@@ -43,7 +43,17 @@ export enum HttpMethod {
     POST = "POST",
     PUT = "PUT",
     DELETE = "DELETE",
-    PATCH = "PATCH"
+    PATCH = "PATCH",    
+}
+
+export class HttpMethodValue {
+
+    static valueOf(strValue: string | undefined): HttpMethod {
+        if (!strValue) {
+            throw TypeError("valueOf expects a non-null value")
+        }
+        return (<any> HttpMethod)[strValue]
+    }
 }
 
 export interface QueryResult<R> {
@@ -65,6 +75,16 @@ export enum ParameterType {
     HEADER = "HEADER"
 }
 
+export class ParameterTypeValue {
+
+    static valueOf(strValue: string | undefined): ParameterType {
+        if (!strValue) {
+            throw TypeError("valueOf expects a non-null value")
+        }
+        return (<any> ParameterType)[strValue]
+    }
+}
+
 export interface KeyValueString {
     key:string,
     value:string
@@ -82,7 +102,7 @@ export interface LoggedUser {
 
 export interface AlertSubscriber {
     id?: number,
-    appName: string,
+    apiName: string,
     email: string,
     basePathList: Array<string>
 }

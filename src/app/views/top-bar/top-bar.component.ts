@@ -10,9 +10,9 @@ import {LoggedUser} from "../../models/models";
 })
 export class TopBarComponent implements OnInit {
 
-  public namespace: String = null;
+  public namespace: string | null = null;
   public isHome = true;
-  user: LoggedUser = null;
+  user: LoggedUser | null = null;
 
   constructor(router: Router,
               private authService: AuthenticationService) {
@@ -36,7 +36,7 @@ export class TopBarComponent implements OnInit {
   }
 
   public get showSubscriptions(): boolean {
-    return (this.user && this.user.roles.indexOf('MANAGER') > -1);
+    return ((this.user?.roles?.indexOf('MANAGER') ?? -1) > -1);
   }
 
   public logout() {

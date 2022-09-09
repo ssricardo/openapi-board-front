@@ -33,7 +33,7 @@ export class ServerFailureHandler implements HttpInterceptor {
                     "Access denied. You are not logged in or your authentication is expired. Please sign in.");
             }
         } else if (err.status >= 400 && err.status < 500) {
-            console.warn('Error from server: ' + err)
+            console.warn(err)
           let errMsg = err.error;
           let validationErr = this.getAsValidationErr(errMsg);
 
@@ -50,9 +50,9 @@ export class ServerFailureHandler implements HttpInterceptor {
     }));
   }
 
-  private getAsValidationErr(inputErr): AppValidationError {
+  private getAsValidationErr(inputErr: any): AppValidationError | null {
     if (inputErr instanceof Object) {
-      if (inputErr.code !== undefined && inputErr.rapp !== undefined) {
+      if (inputErr.code !== undefined && inputErr.errorOrigin !== undefined) {
         return inputErr as AppValidationError;
       }
     }

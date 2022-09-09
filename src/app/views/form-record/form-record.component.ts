@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {AppRecord, HttpMethod, KeyValueString, ParameterMemory, ParameterType, RequestMemoryTO} from "../../models/models";
+import {ApiRecord, HttpMethod, KeyValueString, ParameterMemory, ParameterType, RequestMemoryTO} from "../../models/models";
 import {RequestMemoryService} from "../../services/request-memory.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";

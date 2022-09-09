@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppRegistryService } from 'src/app/services/app-registry.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppNamespace } from 'src/app/models/models';
+import { ApiNamespace } from 'src/app/models/models';
 
 @Component({
   selector: 'app-compare-selection',
@@ -10,11 +10,11 @@ import { AppNamespace } from 'src/app/models/models';
 })
 export class CompareSelectionComponent implements OnInit {
 
-  namespaceList: AppNamespace[] = []
+  namespaceList: ApiNamespace[] = []
   versionList: string[] = []
-  app: string = null;
-  sourceNs: string;
-  sourceVersion: string;
+  app: string | null = null;
+  sourceNs: string | null = null;
+  sourceVersion: string | null = null;
 
   targetNamespace = null;
   targetVersion = null;
@@ -40,11 +40,15 @@ export class CompareSelectionComponent implements OnInit {
   }
 
   public getAppVersions() {
-    this.service.getAvailableVersions(this.targetNamespace, this.app)
+    if (!(this.targetNamespace && this.app)) {
+      console.warn("Missing namespace or API name")
+    } else {
+      this.service.getAvailableVersions(this.targetNamespace, this.app)
       .subscribe(res => {
         this.versionList = res;
         this.versionEnabled = true;
       });
+    }  
   }
 
   public onChangeNm() {

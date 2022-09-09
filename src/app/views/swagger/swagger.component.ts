@@ -2,10 +2,10 @@ import {AfterViewInit, Component, ElementRef, OnInit, Renderer2} from '@angular/
 import {AppRegistryService} from "../../services/app-registry.service";
 import {ActivatedRoute} from "@angular/router";
 import SwaggerUI from 'swagger-ui';
-import {Config} from "../../app.config";
+import {Config, Placeholder} from "../../app.config";
 import {MatDialog} from "@angular/material/dialog";
 import {FormRecordComponent} from "../form-record/form-record.component";
-import {HttpMethod, ParameterMemory, RequestMemoryTO} from "../../models/models";
+import {HttpMethod, HttpMethodValue, ParameterMemory, RequestMemoryTO} from "../../models/models";
 import {AuthenticationService} from "../../services/authentication.service";
 import {AuthInterceptor} from "../../auth/auth-interceptor";
 
@@ -36,8 +36,8 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
     let apiUrl;
     if (! oabSelfDescribe) {
       apiUrl = Config.fullPath(Config.API.GET_API_SOURCE)
-          .replace(":namespace", encodeURIComponent(this.route.snapshot.paramMap.get("namespace")))
-          .replace(":appName", encodeURIComponent(this.route.snapshot.paramMap.get("app")));
+          .replace(Placeholder.NS, encodeURIComponent(this.route.snapshot.paramMap.get("namespace") ?? ""))
+          .replace(Placeholder.API_NAME, encodeURIComponent(this.route.snapshot.paramMap.get("app") ?? ""));
     } else {
       apiUrl = Config.fullPath(Config.API.OAB_DEFINITIONS)
     }
@@ -52,8 +52,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
         SwaggerUI.presets.apis
       ],
       onComplete: ref.onSwaggerReady(),
-      requestInterceptor: function(request) {
-        console.log('Token: ' + ref.authService.getRawToken());
+      requestInterceptor: function(request: any) {        
         request.headers[AuthInterceptor.AUTHORIZATION_HEADER] = 'Bearer ' + ref.authService.getRawToken();
         return request;
       }
@@ -66,9 +65,9 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
       const els = document.getElementsByClassName("opblock-tag-section");
 
       const observer = new MutationObserver((mutations) => {
-        const eBody = document.querySelectorAll('.opblock-section-header .try-out');
+        const tryOutBody = document.querySelectorAll('.opblock-section-header .try-out');
 
-        eBody.forEach((bb, k) => {
+        tryOutBody.forEach((bb, k) => {
           ref.createSaveButton(bb, k);
         });
       });
@@ -84,13 +83,16 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
   }
 
   public createSaveButton(bb: Element, key: number) {
-    let ref = this;
-    if (bb.classList.contains('oab-listen')) {
+    const ref = this;
+    const parent = bb.parentElement!;
+    
+    // avoid duplicating the button on any change
+    if (parent.classList.contains('oab-listen')) {
       return;
     }
-    bb.classList.add('oab-listen');
+    parent.classList.add('oab-listen');
     document.createElement('button')
-    let btn = document.createElement("button");
+    const btn = document.createElement("button");
     btn.innerHTML = "Save Request";
     btn.classList.add('btn');
     btn.id = 'btSave' + key;
@@ -103,7 +105,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
 
   /* Tightly coupled to UI - Changes on new releases from UI need to be reflected here */
   private onSaveRequestClick (e: MouseEvent) {
-    let opParent: Element = e.target as Element;
+    let opParent: Element | null = e.target as Element;
     while (opParent) {
       if (opParent.classList.contains('opblock')) {
         break;
@@ -111,48 +113,52 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
       opParent = opParent.parentElement;
     }
 
-    let pathElem = opParent.querySelector('.opblock-summary-path');
-    let path = pathElem.getAttribute('data-path');
+    let pathElem = opParent?.querySelector('.opblock-summary-path');
+    let path = pathElem?.getAttribute('data-path');
 
-    let methodElem = opParent.querySelector('.opblock-summary-method');
-    let method = methodElem.textContent;
+    let methodElem = opParent?.querySelector('.opblock-summary-method');
+    let method = methodElem?.textContent;
 
-    let bodyElement = opParent.querySelector('.body-param');
+    let bodyElement = opParent?.querySelector('.body-param');
     let bodyPayload =  (bodyElement) ?  bodyElement.textContent : null;
 
 
-    let parameters = opParent.querySelectorAll('.opblock-body .parameters tr');
+    let parameters = opParent?.querySelectorAll('.opblock-body .parameters tr');
     let paramResult = new Array<ParameterMemory>();
 
-    parameters.forEach((tr, key) => {
+    parameters?.forEach((tr, key) => {
       if (tr.getAttribute('data-param-in')) {
-        let paramType = tr.getAttribute('data-param-in');
+        let paramType = tr.getAttribute('data-param-in') ?? "GET";
         let paramName = tr.getAttribute('data-param-name');
         if (! paramName) {
           paramName = paramType + ":" + key;
         }
 
-        let pValue = tr.querySelector('input').value;
+        let pValue = tr.querySelector('input')?.value ?? "";
 
         paramResult.push({
           name: paramName,
           value: pValue,
-          kind: HttpMethod[paramType]
+          kind: HttpMethodValue.valueOf(paramType)
         });
       }
     });
 
-    this.openFormRecord(path, method, bodyPayload, paramResult, new Array<ParameterMemory>());
+    if (!(path && method)) {
+      console.warn("Issue with values for swagger form. Missing one or more of [path, method, body] values.")
+    } else {
+      this.openFormRecord(path, method, bodyPayload, paramResult, new Array<ParameterMemory>());
+    }    
   }
 
-  private openFormRecord(pPath: string, pMethod: string, pBody: string, params: Array<ParameterMemory>, pHeaders: Array<ParameterMemory>) {
+  private openFormRecord(pPath: string, pMethod: string, pBody: string | null, params: Array<ParameterMemory>, pHeaders: Array<ParameterMemory>) {
     let inputVal: RequestMemoryTO = {
       path: pPath,
       title: '',
-      methodType: HttpMethod[pMethod],
-      body: pBody,
-      namespace: this.route.snapshot.paramMap.get("namespace"),
-      appName: this.route.snapshot.paramMap.get("app"),
+      methodType: HttpMethodValue.valueOf(pMethod),
+      body: pBody ?? undefined,
+      namespace: this.route.snapshot.paramMap.get("namespace") ?? "",
+      apiName: this.route.snapshot.paramMap.get("app") ?? "",
       parameters: params,
       requestHeaders: pHeaders
     }

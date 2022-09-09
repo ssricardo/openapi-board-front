@@ -1,8 +1,8 @@
-# oaboard-front
+# openApi-Center-Front
 
-Angular Front End for the OpenAPI Board App
+FrontEnd for the OpenAPI Center App
 
-It's a small standard Angular App. It uses Angular-cli. Therefore, common commands are available, like:
+It's a standard Angular App. It uses Angular-cli. Therefore, common commands are available, like:
  
 > ng serve
 

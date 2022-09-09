@@ -22,18 +22,19 @@ export class ComparisonService {
           return throwError('Invalid fields');
       }
 
-      const body = new HttpParams()
-          .set('srcName', firstName)
-          .set('srcNs', firstNamespace)
-          .set('srcVersion', firstVersion)
-          .set('compareName', secondName)
-          .set('compareNs', secondNamespace)
-          .set('compareVersion', secondVersion);
-    return this.http.post<Comparison>(Config.fullPath(Config.API.POST_COMPARE),
-      body, {
-        headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-      })
+      return this.http.get<Comparison>(Config.fullPath(Config.API.POST_COMPARE),
+        {
+          params: {
+            srcName: firstName,
+            srcNs: firstNamespace,
+            srcVersion: firstVersion,
+            compareName: secondName,
+            compareNs: secondNamespace,
+            compareVersion: secondVersion,
+          },
+          headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+        })
   }
 
   private assertNotBlank(...str: string[]): boolean {

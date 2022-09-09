@@ -19,8 +19,8 @@ export class CompareResultComponent implements OnInit {
       'Songs', 'Production', '1.0').subscribe(result => {
         console.log('Loading OK');
         console.log(result);
-        this.leftApp = result.source.source
-        this.rightApp = result.compared.source
+        this.leftApp = result.source.source ??  "ERROR"
+        this.rightApp = result.compared.source ?? "ERROR"
         this.ready = true;
       }, err => console.error(err));  // TODO
   }

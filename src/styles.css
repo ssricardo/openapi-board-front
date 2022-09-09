@@ -1,191 +1,191 @@
 /* Global Styles */
 
 * {
-  font-family: 'Roboto', Arial, sans-serif;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  width: 1050px;
-  margin: 0 auto;
-  align-items: center;
-  color: #616161;
-}
-
-router-outlet + *  {
-  padding: 0 12px;
-}
-
-/* Text */
-
-h1 {
-  font-size: 32px;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-h1, h2, h3 {
-  font-weight: lighter;
-}
-
-p {
-  font-size: 14px;
-}
-
-.container h1, .container h2, .container h3 {
-  border-bottom: 1px solid;
-  width: 100%;
-}
-
-/* Hyperlink */
-
-a {
-  cursor: pointer;
-  color: #1976d2;
-  text-decoration: none;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
-/* Input */
-
-input {
-  font-size: 14px;
-  border-radius: 2px;
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #BDBDBD;
-}
-
-label {
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  display: block;
-  text-transform: uppercase;
-}
-
-/* Button */
-.button, button {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 2px;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-}
-
-.button:hover, button:hover {
-  opacity: 0.8;
-  font-weight: normal;
-}
-
-.button:disabled, button:disabled {
-  opacity: 0.5;
-  cursor: auto;
-}
-
-/* Fancy Button */
-
-.fancy-button {
-  background-color: white;
-  color: #1976d2;
-}
-
-.fancy-button i.material-icons {
-  color: #1976d2;
-  padding-right: 4px;
-}
-
-
-/* For confirmation component */
-.allow-with-newlines {
-  white-space: pre-wrap;
-}
-
-/* Filtering sections */
-.filters {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  flex-wrap: nowrap;
-  background-color: #F5F5F5;
-  border: 1px solid #CCC;
-  border-radius: 3px;
-  margin-bottom: 10px;
-}
-
-.filters > * {
-  margin: 7px;
-  line-height: 20px;
-  height: 40px;
-  padding: 8px;
-}
-
-.filters > .field, .field input {
-  width: 100%;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* Notification bar */
-
-.notif-ok, .notif-warning, .notif-error, .notif-ok button, .notif-warning button, .notif-error button {
-  color: #333;
-}
-
-.notif-ok {
-  background-color: #98fb98;
-}
-
-.notif-warning {
-  background-color: #eee8aa;
-  animation: wiggle;
-  animation-delay: 0.5s;
-  animation-duration: 0.7s;
-  animation-iteration-count: 2;
-}
-
-.notif-error {
-  background-color: #ffbec1;
-  animation: wiggle;
-  animation-delay: 0.5s;
-  animation-duration: 0.9s;
-  animation-iteration-count: 2;
-}
-
-/* Effects */
-@keyframes left-entering {
-  0% {
-    transform: translateX(-30%);
+    font-family: 'Roboto', Arial, sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  100% {
-    transform: translateX(0);
+  
+  body {
+    margin: 0;
+  
   }
-}
-
-/* Calls attention to error msg */
-@keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  80% { transform: rotate(0deg); }
-  85% { transform: rotate(3deg); }
-  95% { transform: rotate(-3deg); }
-  100% { transform: rotate(0deg); }
-}
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 1050px;
+    margin: 0 auto;
+    align-items: center;
+    color: #616161;
+  }
+  
+  router-outlet + *  {
+    padding: 0 12px;
+  }
+  
+  /* Text */
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  h1, h2, h3 {
+    font-weight: lighter;
+  }
+  
+  p {
+    font-size: 14px;
+  }
+  
+  .container h1, .container h2, .container h3 {
+    border-bottom: 1px solid;
+    width: 100%;
+  }
+  
+  /* Hyperlink */
+  
+  a {
+    cursor: pointer;
+    color: #1976d2;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    opacity: 0.8;
+  }
+  
+  /* Input */
+  
+  input {
+    font-size: 14px;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #BDBDBD;
+  }
+  
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+    text-transform: uppercase;
+  }
+  
+  /* Button */
+  .button, button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+  }
+  
+  .button:hover, button:hover {
+    opacity: 0.8;
+    font-weight: normal;
+  }
+  
+  .button:disabled, button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+  
+  /* Fancy Button */
+  
+  .fancy-button {
+    background-color: white;
+    color: #1976d2;
+  }
+  
+  .fancy-button i.material-icons {
+    color: #1976d2;
+    padding-right: 4px;
+  }
+  
+  
+  /* For confirmation component */
+  .allow-with-newlines {
+    white-space: pre-wrap;
+  }
+  
+  /* Filtering sections */
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+    background-color: #F5F5F5;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .filters > * {
+    margin: 7px;
+    line-height: 20px;
+    height: 40px;
+    padding: 8px;
+  }
+  
+  .filters > .field, .field input {
+    width: 100%;
+  }
+  
+  html, body { height: 100%; }
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  
+  /* Notification bar */
+  
+  .notif-ok, .notif-warning, .notif-error, .notif-ok button, .notif-warning button, .notif-error button {
+    color: #333;
+  }
+  
+  .notif-ok {
+    background-color: #98fb98;
+  }
+  
+  .notif-warning {
+    background-color: #eee8aa;
+    animation: wiggle;
+    animation-delay: 0.5s;
+    animation-duration: 0.7s;
+    animation-iteration-count: 2;
+  }
+  
+  .notif-error {
+    background-color: #ffbec1;
+    animation: wiggle;
+    animation-delay: 0.5s;
+    animation-duration: 0.9s;
+    animation-iteration-count: 2;
+  }
+  
+  /* Effects */
+  @keyframes left-entering {
+    0% {
+      transform: translateX(-30%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Calls attention to error msg */
+  @keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    85% { transform: rotate(3deg); }
+    95% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+  }

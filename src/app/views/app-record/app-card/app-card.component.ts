@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { AppRecord } from '../../../models/models';
+import { ApiRecord } from '../../../models/models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class AppCardComponent implements OnInit {
 
   @Input()
-  public app: AppRecord;
+  public app!: ApiRecord;
 
   @Input()
-  public namespace: string;
+  public namespace!: string;
 
   @Input()
-  public listIndex: number;
+  public listIndex!: number;
 
   constructor(private router: Router) { }
 

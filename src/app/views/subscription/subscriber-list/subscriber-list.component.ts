@@ -13,10 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SubscriberListComponent implements OnInit {
 	filter: string = "";
-	data: AlertSubscriber[];
+	data: AlertSubscriber[] = [];
 
-	// for while, we filter only on forntend
-	private completeList: AlertSubscriber[];
+	// for while, we filter only on frontend
+	private completeList: AlertSubscriber[] = [];
 
 	constructor(private service: SubscriberService,
 				private router: Router,
@@ -35,7 +35,7 @@ export class SubscriberListComponent implements OnInit {
 
 	filterSubscriber() {
 		this.data = this.completeList.filter(
-			(item) => item.email.startsWith(this.filter) || item.appName.startsWith(this.filter));
+			(item) => item.email.startsWith(this.filter) || item.apiName.startsWith(this.filter));
 	}
 
 	addNewSubscription() {
@@ -43,8 +43,8 @@ export class SubscriberListComponent implements OnInit {
 	}
 
 	formatPaths(paths: Array<string>): string {
-		if (! paths) {
-			return null;
+		if (!paths) {
+			return "";
 		}
 		return paths.join(',<br />');
 	}
@@ -58,12 +58,12 @@ export class SubscriberListComponent implements OnInit {
 		let ref = this;
 		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
 			maxWidth: "400px",
-			data: new ConfirmDialogModel("Confirm Action", `Delete subscription? \n${item.appName}: ${item.email}`)
+			data: new ConfirmDialogModel("Confirm Action", `Delete subscription? \n${item.apiName}: ${item.email}`)
 		  });
 	  
 		  dialogRef.afterClosed().subscribe(dialogResult => {
 			if (dialogResult) {
-				ref.service.deleteSubscription(item.id)
+				ref.service.deleteSubscription(item.id ?? -1)
 					.subscribe(r => { 
 						ref.notificationService.showSuccess('Item successfully removed');
 						ref.ngOnInit();

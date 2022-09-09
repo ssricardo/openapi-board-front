@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertSubscriber, AppRecord} from "../../../models/models";
+import {AlertSubscriber, ApiRecord} from "../../../models/models";
 import {Router} from "@angular/router";
 import {SubscriberService} from "../../../services/subscriber.service";
 import {NotificationService} from "../../../services/notification.service";
@@ -18,9 +18,9 @@ export interface PathItem {
 export class SubscriberFormComponent implements OnInit {
 
   newItem: boolean = false;
-  appList: Array<AppRecord> = []
+  appList: Array<ApiRecord> = []
   form: AlertSubscriber = {
-    appName: '', basePathList: [], email: ""
+    apiName: '', basePathList: [], email: ""
   };
   pathList: Array<PathItem> = [];
 

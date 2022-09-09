@@ -10,7 +10,7 @@ import { LoggedUser } from '../models/models';
 })
 export class HomeComponent implements OnInit {
 
-  private user: LoggedUser = null;
+  private user: LoggedUser | null = null;
   public mainNamespace: string;
 
   constructor(private authService: AuthenticationService) {
@@ -22,6 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   public get showSubscriptions(): boolean {
-    return (this.user && this.user.roles.indexOf('MANAGER') > -1);
+    return ((this.user?.roles?.indexOf('MANAGER') ?? -1) > -1);
   }
 }

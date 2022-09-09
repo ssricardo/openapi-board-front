@@ -16,7 +16,7 @@ export class SpinnerContainerComponent implements OnInit, OnDestroy {
 
   public showSpinner = false;
 
-  private subscription: Subscription;
+  private subscription!: Subscription;
 
   constructor(private service: LoaderStateService) { }
 

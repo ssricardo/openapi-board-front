@@ -17,10 +17,11 @@
     </div>
 
     <div class="form-group">
-      <label for="appNameSel">Application: </label>
+      <label for="apiNameSel">API: </label>
       <mat-form-field class="form-line w50" >
-        <mat-label>Select application</mat-label>
-        <mat-select id="appNameSel" required [(value)]="form.appName" #appNameSel>
+        <mat-label>Select API</mat-label>
+        <mat-select id="apiNameSel" required [(value)]="form.apiName"
+         #apiNameSel>
           <mat-option *ngFor="let ap of appList" [value]="ap.name">
             {{ap.name}}
           </mat-option>
@@ -29,8 +30,8 @@
 
       <div class="alert alert-danger"
            role="alert"
-           *ngIf="f.submitted && appNameSel.invalid">
-        <div *ngIf="form.appName.errors.required">Application is required</div>
+           *ngIf="f.submitted && apiNameSel.invalid">
+        <div *ngIf="form.apiName.errors.required">API is required</div>
       </div>
     </div>
 

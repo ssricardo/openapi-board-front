@@ -2,7 +2,7 @@
 
 export class Placeholder {
     static readonly NS = ":namespace";
-    static readonly API_NAME = ":appName";
+    static readonly API_NAME = ":apiName";
 }
 
 class Api {
