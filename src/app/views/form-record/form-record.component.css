@@ -1,5 +1,4 @@
-* {
-}
+
 
 input, textarea, text-output {
 	width: 100%;
@@ -20,6 +19,11 @@ button {
 	margin: 5px;
 }
 
+
+.id-line label {
+	display: inline-block;
+	margin-bottom: 10px;
+}
 .action-buttons {
 	text-align: right;
 }

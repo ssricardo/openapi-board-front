@@ -1,8 +1,8 @@
 <section>
-	<h1><i class="material-icons">memory</i> Memorized Request</h1>
+	<h1><i class="material-icons">memory</i> Stored Request</h1>
 
 	<form name="frMemory">
-		<div>
+		<div class="id-line">
 			<label>Id: </label>
 			<span appearance="fill text-output">
 				{{record.requestId || 'New entry'}}
@@ -36,8 +36,8 @@
 		<div>
 			<span appearance="fill">
 				<label>Body: </label>
-				<textarea name="inBody" matInput placeholder="Request content" class="ta-code"
-						  [(ngModel)]="record.body"></textarea>
+				
+				<ngx-monaco-editor name="inBody"  [options]="editorOptions" [(ngModel)]="requestBody" class="ta-code"></ngx-monaco-editor>
 			</span>
 		</div>
 		<div>

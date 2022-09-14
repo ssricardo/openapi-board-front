@@ -1,14 +1,12 @@
-<section>
-  
-  <div *ngIf="ready">
+<section class="compare-container">
     <h3>Comparison Result</h3>
-    <!-- <td-ngx-text-diff
-      [left]="leftApp"
-      [right]="rightApp"
-      loading="true"
-      outerContainerClass="diff-container"></td-ngx-text-diff> -->
 
-      <div [innerHtml]="leftApp"></div>
-      <div [innerHtml]="rightApp"></div>
-  </div>
+    <span *ngIf="ready">
+      <ngx-monaco-diff-editor [options]="editorOptions" [originalModel]="originalModel" [modifiedModel]="modifiedModel"
+        style="height: 100%;"></ngx-monaco-diff-editor>
+    </span>
+    <span *ngIf="!ready">
+      Loading...
+    </span>
+  
 </section>

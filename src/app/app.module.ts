@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-// import {NgxTextDiffModule} from 'ngx-text-diff';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -39,6 +38,7 @@ import {SubscriberFormComponent} from './views/subscription/subscriber-form/subs
 import {RouteConfigModule} from "./route-config.module";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @NgModule({
   imports: [
@@ -48,8 +48,6 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     FormsModule,
     RouterModule,
-
-    // NgxTextDiffModule,
 
     // Material
     MatFormFieldModule,
@@ -61,7 +59,8 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
 
     RouteConfigModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MonacoEditorModule.forRoot()
   ],
   declarations: [
     AppComponent,

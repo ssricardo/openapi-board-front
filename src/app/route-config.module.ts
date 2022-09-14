@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'namespaces', component: NamespaceListComponent, canActivate: [AuthGuard]},
   {path: 'app-list/:namespace', component: AppListComponent, canActivate: [AuthGuard]},
   {path: 'compareto/:namespace/:app/:version', component: CompareSelectionComponent, canActivate: [AuthGuard]},
-  {path: 'compare-result/:app/:namespace/:version', component: CompareResultComponent, canActivate: [AuthGuard]},
+  {path: 'compare-result/:namespace/:app/:version', component: CompareResultComponent, canActivate: [AuthGuard]},
   {path: 'req-memory-form', component: FormRecordComponent, canActivate: [AuthGuard]},
   {path: 'memory-list', component: MemoryListComponent, canActivate: [AuthGuard]},
   {path: 'swagger/:namespace/:app', component: SwaggerComponent},

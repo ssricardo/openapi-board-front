@@ -16,6 +16,9 @@ export class FormRecordComponent implements OnInit {
 	defaultControl: FormControl = new FormControl(false);
 
 	methodKeys: Map<string, string>;
+	requestBody = ''
+
+	readonly editorOptions = {theme: 'vs-dark', language: 'json'};
 
 	constructor(private service: RequestMemoryService,
 				fb: FormBuilder,
@@ -24,10 +27,13 @@ export class FormRecordComponent implements OnInit {
 		this.options = fb.group({
 			hideRequired: new FormControl(false),
 			floatLabel: this.defaultControl
-		});
-		this.record = data;
-		this.prepareRelationList(data);
-		this.methodKeys = new Map<string, string>();
+		})
+
+		this.record = data
+		this.prepareRelationList(data)
+		this.methodKeys = new Map<string, string>()
+		this.requestBody = data.body
+
 		for (let item in HttpMethod) {
 			this.methodKeys.set(item, HttpMethod[item]);
 		}
@@ -38,7 +44,7 @@ export class FormRecordComponent implements OnInit {
 
 	save() {
 		this.service.saveRequest(this.record).subscribe(r => {
-			console.log('Request saving: Result OK');
+			console.debug('Request saving: Result OK');
 			this.dialogRef.close('OK');
 		});
 	}

@@ -1,5 +1,5 @@
 <nav [ngClass]="{'page-top': ! isHome, 'start-top': isHome}">
-  <h1>OpenAPI Board</h1>
+  <h1>OpenAPI Center</h1>
 
   <span class="ns-menu">
     <span class="hspacer"></span>
@@ -15,8 +15,8 @@
       </a>
     </ng-template>
     <a [routerLink]="['/memory-list']" class="button fancy-button"
-     title="Manage memorized requests">
-      <i class="material-icons">memory</i>Requests Memory
+     title="Manage stored requests">
+      <i class="material-icons">memory</i>Stored Requests
     </a>
     <ng-template [ngIf]="showSubscriptions" ]>
       <a [routerLink]="['/subs-list']" class="button fancy-button"
@@ -25,7 +25,7 @@
       </a>
     </ng-template>
     <a (click)="logout()" class="button fancy-button logout-bt"
-       title="Manage memorized requests">
+       title="Finish session">
       <i class="material-icons">logout</i>Logout
     </a>
   </span>

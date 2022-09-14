@@ -164,8 +164,8 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
     }
 
     let dialogRef = this.dialog.open(FormRecordComponent, {
-      height: '600px',
-      width: '850px',
+      height: '780px',
+      width: '950px',
       data: inputVal
     });
   }
