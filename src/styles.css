@@ -24,6 +24,28 @@
   router-outlet + *  {
     padding: 0 12px;
   }
+
+  .alert {
+    margin: 0.5em;
+    border-radius: 5px;
+    border: 2px solid;
+    padding: 0.3em;
+  }
+
+  .alert-warning, .cdk-overlay-pane .notif-warning {
+    border-color: #ffecb5;
+    background-color: #fff3cd;
+  }
+
+  .cdk-overlay-pane .notif-error {
+    border-color: #f5c2c7;
+    background-color: #f8d7da;
+  }
+
+  .cdk-overlay-pane .notif-ok {
+    border-color: #b6effb;
+    background-color: #cff4fc;
+  }
   
   /* Text */
   

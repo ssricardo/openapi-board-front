@@ -1,6 +1,6 @@
 
 ### Building ###
-FROM node:12-alpine as builder
+FROM node:16-alpine as builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ RUN npm run ng build --prod
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist/openapi-center-front /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

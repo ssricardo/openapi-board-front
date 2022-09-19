@@ -11,14 +11,14 @@ export class NotificationService {
   constructor(public snackBar: MatSnackBar) { }
   
   showSuccess(message: string): void {
-    this.snackBar.open(message, '', {panelClass: ['notif-ok'], duration: 2500});
+    this.snackBar.open(message, '', {panelClass: ['notif-ok'], duration: 2800});
   }
 
-  showWarn(message: string, msgTimeout: number = 5000): void {
+  showWarn(message: string, msgTimeout: number = 5500): void {
     this.snackBar.open(message, 'X', { panelClass: ['notif-warning'], duration: msgTimeout })
   }
   
   showError(message: string): void {
-    this.snackBar.open(message, 'X', {panelClass: ['notif-error'], duration: 6000});
+    this.snackBar.open(message, 'X', {panelClass: ['notif-error'], duration: 7000});
   }
 }
