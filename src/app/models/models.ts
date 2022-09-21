@@ -61,18 +61,19 @@ export interface QueryResult<R> {
     complete: boolean
 }
 
-export interface ParameterMemory {
-    id?: number,
-    name: string,
-    value: string,
-    kind: HttpMethod
-}
 
 export enum ParameterType {
     QUERY = "QUERY",
     PATH = "PATH",
     MATRIX = "MATRIX",
     HEADER = "HEADER"
+}
+
+export interface ParameterMemory {
+    id?: number,
+    name: string,
+    value: string,
+    kind: ParameterType
 }
 
 export class ParameterTypeValue {

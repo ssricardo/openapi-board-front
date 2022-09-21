@@ -17,7 +17,9 @@
 		<div>
 			<label>Method: </label>
 			<span appearance="fill">
-				<select name="slMethod" required [(ngModel)]="record.methodType" disabled title="Html method. This field can not be modified.">
+				<select name="slMethod" required [(ngModel)]="record.methodType" disabled 
+				 class="w50"
+				 title="Html method. This field can not be modified.">
 					<option value=""></option>
 					<option value="GET">GET</option>
 					<option value="POST">POST</option>
@@ -35,17 +37,11 @@
 		</div>
 		<div>
 			<span appearance="fill">
-				<label>Body: </label>
-				
+				<label>Body: </label>				
 				<ngx-monaco-editor name="inBody"  [options]="editorOptions" [(ngModel)]="requestBody" class="ta-code"></ngx-monaco-editor>
 			</span>
 		</div>
-		<div>
-			<span appearance="fill">
-				<label>Headers: </label>
-				<app-parameters-view [dataSource]="record.requestHeaders" fixedType="Header"></app-parameters-view>
-			</span>
-		</div>
+		
 		<div>
 			<span appearance="fill">
 				<label>Parameters: </label>

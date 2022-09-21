@@ -5,7 +5,7 @@ import SwaggerUI from 'swagger-ui';
 import {Config, Placeholder} from "../../app.config";
 import {MatDialog} from "@angular/material/dialog";
 import {FormRecordComponent} from "../form-record/form-record.component";
-import {HttpMethod, HttpMethodValue, ParameterMemory, RequestMemoryTO} from "../../models/models";
+import {HttpMethod, HttpMethodValue, ParameterMemory, ParameterTypeValue, RequestMemoryTO} from "../../models/models";
 import {AuthenticationService} from "../../services/authentication.service";
 import {AuthInterceptor} from "../../auth/auth-interceptor";
 
@@ -20,8 +20,7 @@ import {AuthInterceptor} from "../../auth/auth-interceptor";
 })
 export class SwaggerComponent implements OnInit, AfterViewInit {
 
-  constructor(private appService: AppRegistryService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private el: ElementRef,
               private render: Renderer2,
               private dialog: MatDialog,
@@ -139,7 +138,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
         paramResult.push({
           name: paramName,
           value: pValue,
-          kind: HttpMethodValue.valueOf(paramType)
+          kind: ParameterTypeValue.valueOf(paramType)
         });
       }
     });

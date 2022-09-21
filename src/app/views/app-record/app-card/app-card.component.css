@@ -1,21 +1,17 @@
-* {
-    color: #0E4378;
-}
-
-h4 {
-    margin: 0 0 10px 0;
-}
-
-a {
+:host {
     border: 1px outset #AAA;
     border-radius: 7px;
-    padding: 20px;
+    padding: 0px;
     line-height: 130%;
-    width: 250px;
+    width: 280px;
     min-height: 80px;
-    margin: 10px;    
-    display: block;    
-    align-items: center;
+    margin: 5px;    
+    /* display: block;     */
+    /* align-items: center; */
+    
+}
+
+:host > section {
     animation-name: left-entering;
 }
 
@@ -23,12 +19,6 @@ a > section {
     height: 80px;
     align-items: center;
     justify-content: center;
-}
-
-.col-icon {
-    zoom: 1;
-    height: 100%;
-    align-items: center;
 }
 
 label {
@@ -44,36 +34,24 @@ label {
     overflow: hidden;
 }
 
-.vers i {
-    zoom: 0.85;
-}
-
-.vers span:hover {
-    border: 1px solid;
-}
-
 .name {
     font-weight: bold;
     font-size: x-large;
-    margin-left: 20px;
     color: darkorange;
+}
+
+.contentExplore {
+    text-align: center; 
+    border-bottom: 1px solid;
+    padding-bottom: 3px;
+    display: block;
+}
+
+.actionArea {
+    display: flex;
+    justify-content: space-between;
 }
 
 a:hover {
     background-color: #f0f0f0;
-}
-
-.sp-compare, .sp-compare > i {
-    height: 30px;
-    zoom: 0.75;
-    text-align: right;
-}
-
-.sp-compare:hover {
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-}
-
-.sp-compare > i {
-    vertical-align: middle;
 }

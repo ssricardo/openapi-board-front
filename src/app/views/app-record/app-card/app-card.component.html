@@ -1,19 +1,28 @@
-<a (click)="openApp()" [ngStyle]="{'animation-duration': (listIndex / 7) + 's'}">
-    <section>
-        <h4>
-            <i class="col-icon material-icons">cloud</i>
+<section [ngStyle]="{'animation-duration': (listIndex / 7) + 's'}">
+    <mat-card>
+        <mat-card-title>
             <span class="name">{{ app.name }}</span>
-        </h4>
-
-        <div>
-            <div>
-                <label>Version: </label>
-                <span class="vers">{{ app.version }}</span>
-            </div>
-            <div (click)="goToCompare()" class="sp-compare">
+        </mat-card-title>
+        <mat-card-subtitle>
+            <label>Version: </label>
+            <span class="vers">{{ app.version }}</span>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <a (click)="openApp()" class="contentExplore">
+                <i class="material-icons">rocket_launch</i>
+                Explore
+            </a>
+        </mat-card-content>
+        
+        <mat-card-actions class="actionArea">
+            <button mat-button (click)="openApp()">
+                <i class="material-icons">manage_search</i>
+                View
+            </button>
+            <button mat-button (click)="goToCompare()">
                 <i class="material-icons">compare_arrows</i>
                 Compare
-            </div>
-        </div>
-    </section>
-</a>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</section>

@@ -31,6 +31,5 @@ The base paths for the backend are on `app.config.ts`.
 * Use angular-material in some more parts
 * Work on tests
 * Review styles and colors
-* Spit modules
 
 Or you can also use it from `npm`. Check the scripts out on `package.json`.

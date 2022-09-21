@@ -1,6 +1,6 @@
 <section>
   <div class="param-actions mat-toolbar">
-    <button (click)="addItems()" title="Add parameter" mat-button color="primary">
+    <button mat-button (click)="addItems()" title="Add parameter" color="primary">
       <i class="material-icons">add</i>
       Add Parameter
     </button>
@@ -17,14 +17,14 @@
       <tr *ngFor="let item of dataSource; let i = index">
         <td>{{item.id}}</td>
         <td>
-          <select name="slType" required [(ngModel)]="item.kind" *ngIf="! fixedType">
+          <select name="slType" class="methodSelect" required [(ngModel)]="item.kind" *ngIf="! fixedType">
             <option *ngFor="let item of methodKeys | keyvalue" [value]="item.key" [label]="item.value"></option>
           </select>
           <span *ngIf="fixedType">{{fixedType}}</span>
         </td>
         <td><input name="in_name_{{i}}" type="text" [(ngModel)]="item.name"></td>
         <td><input name="in_value_{{i}}" type="text" [(ngModel)]="item.value"></td>
-        <td><a (click)="removeItem(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
+        <td class="prActions"><a (click)="removeItem(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
       </tr>
     </table>
 

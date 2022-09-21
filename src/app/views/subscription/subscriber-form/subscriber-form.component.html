@@ -5,12 +5,10 @@
     <div class="form-group">
       <label for="email">E-mail</label>
       <input type="email"
-             id="email"
-             name="email"
+             id="email" name="email"
              class="form-control"
              [(ngModel)]="form.email"
-             required
-             #mailField="ngModel" />
+             required #mailField="ngModel" />
       <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mailField.invalid" >
         E-mail is required!
       </div>
@@ -35,22 +33,25 @@
       </div>
     </div>
 
-    <div class="w50">
+    <div>
       <h3>Path filtering:</h3>
       <div class="action-top action-buttons mat-toolbar">
-        <button type="button" (click)="addPath()" title="Add parameter"
+        <button type="button" (click)="addPath()" title="Add path"
                 mat-button color="primary">
           <i class="material-icons">add</i>
-          Add
+          Add Path
         </button>
       </div>
-      <table class="data-table">
+      <table class="data-table" >
         <tr>
           <th>Base Path</th>
           <th><i class="material-icons">keyboard_hide</i></th>
         </tr>
         <tr *ngFor="let item of pathList; let i = index">
-          <td><input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"></td>
+          <td>
+            <input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"
+             placeholder="Path ( ex: /v1/cities/ )">
+          </td>
           <td><a (click)="removePath(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
         </tr>
       </table>

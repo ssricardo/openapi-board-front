@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {ApiNamespace, QueryResult, RequestMemoryTO} from "../models/models";
+import {ApiNamespace, ParameterType, QueryResult, RequestMemoryTO} from "../models/models";
 import {Config} from "../app.config";
 import {NotificationService} from "./notification.service";
 
@@ -10,20 +10,24 @@ import {NotificationService} from "./notification.service";
 })
 export class RequestMemoryService {
 
-  constructor(private http: HttpClient,
+  	constructor(private http: HttpClient,
 			  private notificationService: NotificationService) { }
 
-  private basePath = Config.API.EXAMPLES
+  	private basePath = Config.API.EXAMPLES
 
-  public saveRequest(memory: RequestMemoryTO): Observable<any> {
-  	if (! this.validateRequest(memory)) {
-  		return throwError('Invalid request');
+	public saveRequest(memory: RequestMemoryTO): Observable<any> {
+		if (! this.validateRequest(memory)) {
+			return throwError(() => new Error('Invalid request'));
+		}
+		this.assignHeaderField(memory)
+		console.log(memory);
+		
+		return null
+		if (memory.requestId) {
+			return this.http.put<ApiNamespace[]>(this.basePath.concat(`/${memory.requestId}`), memory);
+		}
+		return this.http.post<ApiNamespace[]>(this.basePath, memory);
 	}
-	if (memory.requestId) {
-		return this.http.put<ApiNamespace[]>(this.basePath.concat(`/${memory.requestId}`), memory);
-	}
-    return this.http.post<ApiNamespace[]>(this.basePath, memory);
-  }
 
 	private validateRequest(memory: RequestMemoryTO) {
   		let valid = (memory.title && memory.title.trim().length > 0)
@@ -40,6 +44,12 @@ export class RequestMemoryService {
 			return false;
 		}
 		return true;
+	}
+
+	private assignHeaderField(memory: RequestMemoryTO) {
+		const allParams = memory.parameters ?? []
+		memory.requestHeaders = allParams.filter(p => p.kind == ParameterType.HEADER)
+		memory.parameters = allParams.filter(p => p.kind != ParameterType.HEADER)
 	}
 
 	public removeRequestMemory(id: number): Observable<any> {

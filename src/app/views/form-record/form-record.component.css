@@ -19,6 +19,9 @@ button {
 	margin: 5px;
 }
 
+.w50 {
+	width: 50%;
+}
 
 .id-line label {
 	display: inline-block;

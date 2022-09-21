@@ -18,6 +18,11 @@ label {
 	margin-right: 10px;
 }
 
+.methodSelect {
+	width: 100px;
+	padding: 5px;
+}
+
 .param-actions {
 	text-align: right;
 }
@@ -26,10 +31,26 @@ label {
 	font-size: 16px;
 }
 
+.param-actions > button {
+	color: rgb(129, 88, 202);	/* It's not ready the mat-primary */
+	background-color: transparent;
+	font-weight: bold;
+}
+
 .items {
 	text-align: center;
 }
 
 .data-table {
 	width: 90%;
+}
+
+
+.data-table td {
+	vertical-align: top;
+}
+
+.prActions {
+	display: flex;
+	justify-content: space-around;
 }

@@ -21,7 +21,8 @@
 }
 
 .tb-action {
-	text-align: center;
+	display: flex;
+	justify-content: space-around;
 }
 
 .bottom-info {
@@ -33,4 +34,8 @@
 .actions  {
 	padding: 5px 10px;
 	text-align: right;
+}
+
+.actions > button {
+	font-weight: bold;
 }
