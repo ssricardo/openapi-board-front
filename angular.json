@@ -28,7 +28,13 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/swagger-ui/dist/swagger-ui.css"
             ],
-            "scripts": []
+            "scripts": [              
+              {
+                "input": "node_modules/redoc/bundles/redoc.standalone.js",
+                "inject": false,
+                "bundleName": "redoc-bundle"
+              }
+            ]
           },
           "configurations": {
             "production": {

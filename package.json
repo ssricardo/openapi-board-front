@@ -1,6 +1,9 @@
 {
   "name": "openapi-center-front",
   "version": "0.1.0",
+  "author": {
+    "name": "Ricardo SS"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,6 +25,7 @@
     "jwt-decode": "^3.1.2",
     "monaco-editor": "^0.34.0",
     "ngx-monaco-editor": "^12.0.0",
+    "redoc": "^2.0.0",
     "rxjs": "~7.5.0",
     "swagger-ui": "^4.9.0",
     "tslib": "^2.3.0",

@@ -20,6 +20,15 @@
     align-items: center;
     color: #616161;
   }
+
+  .container-full {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    color: #616161;
+  }
   
   router-outlet + *  {
     padding: 0 12px;

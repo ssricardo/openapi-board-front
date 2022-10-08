@@ -35,4 +35,10 @@ export class AppRegistryService {
       .replace(Placeholder.NS, encodeURIComponent(namespace))
       .replace(Placeholder.API_NAME, encodeURIComponent(app)));
   }
+
+  public getCurrentSource(namespace: string, api: string): Observable<string> {
+    return this.http.get<string>(Config.fullPath(Config.API.GET_API_SOURCE)
+      .replace(Placeholder.NS, encodeURIComponent(namespace))
+      .replace(Placeholder.API_NAME, encodeURIComponent(api)));
+  }
 }

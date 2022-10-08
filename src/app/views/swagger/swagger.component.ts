@@ -33,14 +33,14 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
     let oabSelfDescribe = this.route.snapshot.queryParamMap.has("self-describe")
 
     let apiUrl;
-    if (! oabSelfDescribe) {
+    if (!oabSelfDescribe) {
       apiUrl = Config.fullPath(Config.API.GET_API_SOURCE)
           .replace(Placeholder.NS, encodeURIComponent(this.route.snapshot.paramMap.get("namespace") ?? ""))
           .replace(Placeholder.API_NAME, encodeURIComponent(this.route.snapshot.paramMap.get("app") ?? ""));
     } else {
       apiUrl = Config.fullPath(Config.API.OAB_DEFINITIONS)
     }
-    let ref = this;
+    const __this = this;
 
     const ui = SwaggerUI({
       url: apiUrl,
@@ -50,9 +50,9 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
       presets: [
         SwaggerUI.presets.apis
       ],
-      onComplete: ref.onSwaggerReady(),
+      onComplete: __this.onSwaggerReady(),
       requestInterceptor: function(request: any) {        
-        request.headers[AuthInterceptor.AUTHORIZATION_HEADER] = 'Bearer ' + ref.authService.getRawToken();
+        request.headers[AuthInterceptor.AUTHORIZATION_HEADER] = 'Bearer ' + __this.authService.getRawToken();
         return request;
       }
     });

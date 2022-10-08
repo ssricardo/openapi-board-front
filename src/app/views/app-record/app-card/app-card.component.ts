@@ -31,4 +31,8 @@ export class AppCardComponent implements OnInit {
     this.router.navigate(['compareto', this.namespace, this.app.name, this.app.version])
   }
 
+  public viewAsDoc() {
+    window.open(`/redoc/${encodeURIComponent(this.namespace)}/${this.app.name}`, '_blank');
+  }
+
 }

@@ -7,6 +7,7 @@ import { FormRecordComponent } from './views/form-record/form-record.component';
 import { ParametersViewComponent } from './views/parameters-view/parameters-view.component';
 import { SwaggerComponent } from './views/swagger/swagger.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { RedocComponent } from './views/redoc/redoc.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,11 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
   declarations: [
     SwaggerComponent,
     FormRecordComponent,
-    ParametersViewComponent
+    ParametersViewComponent,
+    RedocComponent
   ],
   providers: [    
   ],
-  exports: [SwaggerComponent]
+  exports: [SwaggerComponent, RedocComponent]
 })
 export class SwaggerInternalModule { }
