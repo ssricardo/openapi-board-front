@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppRegistryService } from 'src/app/services/app-registry.service';
+import { ApiRegistryService } from 'src/app/services/api-registry.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiNamespace } from 'src/app/models/models';
 
@@ -10,11 +10,9 @@ import { ApiNamespace } from 'src/app/models/models';
 })
 export class CompareSelectionComponent implements OnInit {
 
-  namespaceList: ApiNamespace[] = []
+  namespaceList: string[] = []
   versionList: string[] = []
-  app: string | null = null;
-  sourceNs: string | null = null;
-  sourceVersion: string | null = null;
+  api: string | null = null;
 
   targetNamespace = null;
   targetVersion = null;
@@ -22,16 +20,24 @@ export class CompareSelectionComponent implements OnInit {
   // view only
   versionEnabled = false;
 
-  constructor(private service: AppRegistryService, 
+  apiName?: string;
+  originNs?: string;
+  originVersion?: string;
+
+  constructor(private service: ApiRegistryService,
               private route: ActivatedRoute,
               private navigator: Router) {
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(res => {
-      this.app = res.get('app');
-      this.sourceNs = res.get('namespace');
-      this.sourceVersion = res.get('version');
+      this.api = res.get('apiId');
+
+      this.service.getApiRecord(this.api).subscribe(result => {
+        this.apiName = result.name
+        this.originNs = result.namespace
+        this.originVersion = result.version
+      });
 
       this.service.listNamespaces().subscribe(result => {
         this.namespaceList = result;
@@ -39,27 +45,27 @@ export class CompareSelectionComponent implements OnInit {
     });    
   }
 
-  public getAppVersions() {
-    if (!(this.targetNamespace && this.app)) {
-      console.warn("Missing namespace or API name")
+  private getApiVersions() {
+    if (!this.api) {
+      console.warn("Missing reference API")
     } else {
-      this.service.getAvailableVersions(this.targetNamespace, this.app)
-      .subscribe(res => {
-        this.versionList = res;
-        this.versionEnabled = true;
-      });
+      // TODO get only versions available in selected ns
+      this.service.getAvailableVersions(this.api)
+        .subscribe(res => {
+          this.versionList = res;
+          this.versionEnabled = true;
+        });
     }  
   }
 
   public onChangeNm() {
     console.log('Namespace: ' + this.targetNamespace);
     this.versionEnabled = false;
-    this.getAppVersions();
+    this.getApiVersions();
   }
 
   public goToCompare() {
-    this.navigator.navigate(['compare-result', this.app, this.sourceNs, 
-      this.sourceVersion], 
+    this.navigator.navigate(['compare-result', this.apiName, this.originNs, this.originVersion],
       {
         queryParams: {
           'compareNs': this.targetNamespace,

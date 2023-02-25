@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppRegistryService } from 'src/app/services/app-registry.service';
+import { ApiRegistryService } from 'src/app/services/api-registry.service';
 
 @Component({
   selector: 'namespace-list',
@@ -12,7 +12,7 @@ export class NamespaceListComponent implements OnInit {
   private resultList = [];
   public filteredList = [];
 
-  constructor(private service: AppRegistryService) { }
+  constructor(private service: ApiRegistryService) { }
 
   ngOnInit() {
     this.service.listNamespaces().subscribe(res => {

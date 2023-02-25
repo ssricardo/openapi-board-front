@@ -3,11 +3,11 @@ import { ApiRecord } from '../../../models/models';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './app-card.component.html',
-  styleUrls: ['./app-card.component.css']
+  selector: 'api-card',
+  templateUrl: './api-card.component.html',
+  styleUrls: ['./api-card.component.css']
 })
-export class AppCardComponent implements OnInit {
+export class ApiCardComponent implements OnInit {
 
   @Input()
   public app!: ApiRecord;
@@ -24,15 +24,15 @@ export class AppCardComponent implements OnInit {
   }
 
   public openApp() {
-    window.open(`/swagger/${encodeURIComponent(this.namespace)}/${this.app.name}`, '_blank');
+    window.open(`/swagger/${this.app.apiId}`, '_blank');
   }
 
   public goToCompare() {
-    this.router.navigate(['compareto', this.namespace, this.app.name, this.app.version])
+    this.router.navigate(['compareto', this.app.apiId])
   }
 
   public viewAsDoc() {
-    window.open(`/redoc/${encodeURIComponent(this.namespace)}/${this.app.name}`, '_blank');
+    window.open(`/redoc/${this.app.apiId}`, '_blank');
   }
 
 }

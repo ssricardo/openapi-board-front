@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, Renderer2} from '@angular/core';
-import {AppRegistryService} from "../../services/app-registry.service";
 import {ActivatedRoute} from "@angular/router";
 import SwaggerUI from 'swagger-ui';
 import {Config, Placeholder} from "../../app.config";
 import {MatDialog} from "@angular/material/dialog";
-import {FormRecordComponent} from "../form-record/form-record.component";
-import {HttpMethod, HttpMethodValue, ParameterMemory, ParameterTypeValue, RequestMemoryTO} from "../../models/models";
+import {SampleFormComponent} from "../form-record/sample-form.component";
+import {HttpMethodValue, ParameterMemory, ParameterTypeValue, RequestSampleTO} from "../../models/models";
 import {AuthenticationService} from "../../services/authentication.service";
 import {AuthInterceptor} from "../../auth/auth-interceptor";
+import {NotificationService} from "../../services/notification.service";
 
 /**
  * Wrapper for Swagger UI, adding some customization by manipulating Swaggers DOM
@@ -24,9 +24,15 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
               private el: ElementRef,
               private render: Renderer2,
               private dialog: MatDialog,
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              private notificationService: NotificationService) { }
+
+  private apiId: string;
 
   ngOnInit() {
+    this.route.paramMap.subscribe(param => {
+      this.apiId = param.get("apiId");
+    })
   }
 
   ngAfterViewInit(): void {
@@ -35,8 +41,7 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
     let apiUrl;
     if (!oabSelfDescribe) {
       apiUrl = Config.fullPath(Config.API.GET_API_SOURCE)
-          .replace(Placeholder.NS, encodeURIComponent(this.route.snapshot.paramMap.get("namespace") ?? ""))
-          .replace(Placeholder.API_NAME, encodeURIComponent(this.route.snapshot.paramMap.get("app") ?? ""));
+          .replace(Placeholder.API_ID, this.apiId);
     } else {
       apiUrl = Config.fullPath(Config.API.OAB_DEFINITIONS)
     }
@@ -151,21 +156,27 @@ export class SwaggerComponent implements OnInit, AfterViewInit {
   }
 
   private openFormRecord(pPath: string, pMethod: string, pBody: string | null, params: Array<ParameterMemory>, pHeaders: Array<ParameterMemory>) {
-    let inputVal: RequestMemoryTO = {
+    let inputVal: RequestSampleTO = {
       path: pPath,
       title: '',
       methodType: HttpMethodValue.valueOf(pMethod),
       body: pBody ?? undefined,
-      namespace: this.route.snapshot.paramMap.get("namespace") ?? "",
-      apiName: this.route.snapshot.paramMap.get("app") ?? "",
+      sameNamespaceOnly: false,
+      apiId: this.apiId,
       parameters: params,
       requestHeaders: pHeaders
     }
 
-    let dialogRef = this.dialog.open(FormRecordComponent, {
+    let dialogRef = this.dialog.open(SampleFormComponent, {
       height: '780px',
       width: '950px',
       data: inputVal
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res && res === 'OK') {
+        this.notificationService.showSuccess("Item successfully registered.");
+      }
     });
   }
 

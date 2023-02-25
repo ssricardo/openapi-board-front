@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestMemoryService} from "../../services/request-memory.service";
 import {NotificationService} from "../../services/notification.service";
-import {RequestMemoryTO} from "../../models/models";
+import {RequestSampleTO} from "../../models/models";
 import {MatDialog} from "@angular/material/dialog";
-import {FormRecordComponent} from "../form-record/form-record.component";
+import {SampleFormComponent} from "../form-record/sample-form.component";
 import {ConfirmDialogComponent, ConfirmDialogModel} from "../../confirm-dialog/ConfirmDialogComponent";
 
 @Component({
-  selector: 'app-memory-list',
-  templateUrl: './memory-list.component.html',
-  styleUrls: ['./memory-list.component.css']
+  selector: 'app-sample-list',
+  templateUrl: './sample-list.component.html',
+  styleUrls: ['./sample-list.component.css']
 })
-export class MemoryListComponent implements OnInit {
+export class SampleListComponent implements OnInit {
 
   filter = ""
-  data: RequestMemoryTO[]
+  data: RequestSampleTO[]
 
   constructor(private service: RequestMemoryService,
               private notificationService: NotificationService,
@@ -33,32 +33,32 @@ export class MemoryListComponent implements OnInit {
     });
   }
 
-  public editItem(item: RequestMemoryTO) {
+  public editItem(item: RequestSampleTO) {
     let itemCopy = Object.assign({}, item);
-    let dialogRef = this.dialog.open(FormRecordComponent, {
-      height: '600px',
-      width: '850px',
+    let dialogRef = this.dialog.open(SampleFormComponent, {
+      height: '780px',
+      width: '950px',
       data: itemCopy
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res && res === 'OK') {
-        this.notificationService.showSuccess("Item successfully modified.");
+        this.notificationService.showSuccess("Request successfully modified.");
         this.searchMemoryList();
       }
     });
   }
 
-  public removeItem(item: RequestMemoryTO) {
+  public removeItem(item: RequestSampleTO) {
     let itemId = item.requestId;
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
-      data: new ConfirmDialogModel("Confirm Action", `Delete memory? \n${item.requestId}: ${item.title}`)
+      data: new ConfirmDialogModel("Confirm Action", `Delete request sample? \n${item.requestId}: ${item.title}`)
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.service.removeRequestMemory(itemId).subscribe(res => {
-          this.notificationService.showSuccess("Item successfully removed.");
+          this.notificationService.showSuccess("Request successfully removed.");
           this.searchMemoryList();
         })
       }

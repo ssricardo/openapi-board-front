@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiRecord } from 'src/app/models/models';
-import { AppRegistryService } from '../../../services/app-registry.service';
+import { ApiRegistryService } from '../../../services/api-registry.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './app-list.component.html',
-  styleUrls: ['./app-list.component.css']
+  selector: 'api-list',
+  templateUrl: './api-list.component.html',
+  styleUrls: ['./api-list.component.css']
 })
-export class AppListComponent implements OnInit {
+export class ApiListComponent implements OnInit {
 
   public namespace: string | null = null;
   public appList: ApiRecord[] = [];
 
-  constructor(private service: AppRegistryService,
+  constructor(private service: ApiRegistryService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.namespace = this.route.snapshot.paramMap.get('namespace');
     const ns = this.namespace ?? "None"
 
-    this.service.listAppOnNamespace(ns).subscribe(res => {
+    this.service.listApiOnNamespace(ns).subscribe(res => {
       this.appList = res;
     });
   }

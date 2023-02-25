@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppRegistryService } from 'src/app/services/app-registry.service';
+import { ApiRegistryService } from 'src/app/services/api-registry.service';
 
 declare var Redoc: any;
 
@@ -12,18 +12,16 @@ declare var Redoc: any;
 })
 export class RedocComponent implements AfterViewInit {
 
-  private namespace: string;
-  private apiName: string;
+  private apiId: string;
 
   constructor(private route: ActivatedRoute,
-    private apiService: AppRegistryService, 
+    private apiService: ApiRegistryService,
     @Inject(DOCUMENT) private _document: Document,
     private elementRef: ElementRef
   ) { }
 
   ngOnInit(): void {
-    this.namespace = encodeURIComponent(this.route.snapshot.paramMap.get("namespace") ?? "")
-    this.apiName = encodeURIComponent(this.route.snapshot.paramMap.get("app") ?? "")    
+    this.apiId = this.route.snapshot.paramMap.get("apiId") ?? "";
   }
 
   ngAfterViewInit() {
@@ -40,7 +38,7 @@ export class RedocComponent implements AfterViewInit {
   }
 
   loadRedoc() {
-    this.apiService.getCurrentSource(this.namespace, this.apiName)
+    this.apiService.getCurrentSource(this.apiId)
       .subscribe(res => {
         Redoc.init(res, {
           scrollYOffset: 50

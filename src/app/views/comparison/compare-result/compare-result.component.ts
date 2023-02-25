@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DiffEditorModel } from 'ngx-monaco-editor';
 import { ComparisonService } from 'src/app/services/comparison.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'compare-result',
@@ -22,11 +23,23 @@ export class CompareResultComponent implements OnInit {
   readonly editorOptions = {theme: 'vs-dark'};
   ready: boolean = false
 
-  constructor(private service: ComparisonService) { }
+  constructor(private service: ComparisonService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.service.compareApps('Products', 'Production', '1.0',
-      'Songs', 'Production', '1.0').subscribe(result => {
+    const source = {
+      ns: this.route.snapshot.paramMap.get("namespace") ?? "",
+      apiName: this.route.snapshot.paramMap.get("apiName") ?? "",
+      version: this.route.snapshot.paramMap.get("version") ?? ""
+    }
+
+    const compare = {
+      ns: this.route.snapshot.queryParamMap.get("compareNs") ?? "",
+      version: this.route.snapshot.queryParamMap.get("compareVer") ?? ""
+    }
+
+    this.service.compareApps(source.apiName, source.ns, source.version,
+      compare.ns, compare.version).subscribe(result => {
         console.debug('Comparison loading OK');        
         this.originalModel.code = result.source.source ??  "ERROR"
         this.modifiedModel.code = result.compared.source ?? "ERROR"

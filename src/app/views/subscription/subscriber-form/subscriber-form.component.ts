@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertSubscriber, ApiRecord} from "../../../models/models";
+import {Subscription, ApiRecord, ApiNamespace} from "../../../models/models";
 import {Router} from "@angular/router";
 import {SubscriberService} from "../../../services/subscriber.service";
 import {NotificationService} from "../../../services/notification.service";
-import {AppRegistryService} from "../../../services/app-registry.service";
+import {ApiRegistryService} from "../../../services/api-registry.service";
 import {Config} from "../../../app.config";
 
 export interface PathItem {
@@ -19,17 +19,24 @@ export class SubscriberFormComponent implements OnInit {
 
   newItem: boolean = false;
   appList: Array<ApiRecord> = []
-  form: AlertSubscriber = {
-    apiName: '', basePathList: [], email: ""
-  };
   pathList: Array<PathItem> = [];
+  nsList: Array<string> = []
+
+  form: Subscription = {
+    apiName: '',
+    basePathList: [],
+    hookAddress: '',
+    namespace: ''
+  };
 
   constructor(private route: Router,
               private service: SubscriberService,
-              private appService: AppRegistryService,
+              private apiService: ApiRegistryService,
               private notificationService: NotificationService) {
+
     if (route.getCurrentNavigation()?.extras.state) {
-      this.form = route.getCurrentNavigation()!.extras.state as AlertSubscriber;
+      this.form = route.getCurrentNavigation()!.extras.state as Subscription;
+
       this.pathList = this.form.basePathList.map(p => { 
         let item: PathItem = { value: p }
         return item;
@@ -38,7 +45,8 @@ export class SubscriberFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appService.listAppOnNamespace(Config.MAIN_NAMESPACE).subscribe(r => this.appList = r);
+    this.apiService.listApiOnNamespace(Config.MAIN_NAMESPACE).subscribe(r => this.appList = r);
+    this.apiService.listNamespaces().subscribe(r => this.nsList = r);
   }
 
   onSubmit() {
@@ -46,6 +54,7 @@ export class SubscriberFormComponent implements OnInit {
     this.service.saveSubscription(this.form)
         .subscribe(res => {
           this.notificationService.showSuccess("Subscription saved successfully");
+          this.clearForm()
           this.route.navigate(['subs-list']);
         })
     return true;
@@ -56,6 +65,7 @@ export class SubscriberFormComponent implements OnInit {
   }
 
   cancel() {
+    this.clearForm()
     this.route.navigate(['subs-list']);
   }
 
@@ -67,5 +77,11 @@ export class SubscriberFormComponent implements OnInit {
     this.pathList.push({
       value: ''
     });
+  }
+
+  private clearForm() {
+    this.form = {
+      apiName: '', basePathList: [], hookAddress: ''
+    }
   }
 }

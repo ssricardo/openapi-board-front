@@ -17,14 +17,14 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppCardComponent } from './views/app-record/app-card/app-card.component';
-import { AppListComponent } from './views/app-record/app-list/app-list.component';
+import { ApiCardComponent } from './views/api-record/api-card/api-card.component';
+import { ApiListComponent } from './views/api-record/api-list/api-list.component';
 import { NamespaceInfoComponent } from './views/namespaces/namespace-info/namespace-info.component';
 import { NamespaceListComponent } from './views/namespaces/namespace-list/namespace-list.component';
 import { TopBarComponent } from './views/top-bar/top-bar.component';
 import { ConfirmDialogComponent } from "./confirm-dialog/ConfirmDialogComponent";
 import { LoginComponent } from './views/login/login.component';
-import { MemoryListComponent } from './views/memory-list/memory-list.component';
+import { SampleListComponent } from './views/memory-list/sample-list.component';
 import { SubscriberFormComponent } from './views/subscription/subscriber-form/subscriber-form.component';
 import { SubscriberListComponent } from './views/subscription/subscriber-list/subscriber-list.component';
 import { HomeComponent } from './home/home.component';
@@ -38,43 +38,45 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
 import { RouteConfigModule } from "./route-config.module";
 import { ComparisonModule } from './comparison.module';
 import { SwaggerInternalModule } from './swagger.module';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule,
+    imports: [
+        BrowserModule,
+        CommonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        RouterModule,
 
-    // Material
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatCardModule,
+        // Material
+        MatFormFieldModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatCardModule,
 
-    RouteConfigModule,
-    BrowserAnimationsModule,
+        RouteConfigModule,
+        BrowserAnimationsModule,
 
-    SwaggerInternalModule,
-    ComparisonModule,
-    
-  ],
+        SwaggerInternalModule,
+        ComparisonModule,
+        MatTabsModule,
+
+    ],
   declarations: [
     AppComponent,
     TopBarComponent,
     NamespaceListComponent,
     NamespaceInfoComponent,
-    AppListComponent,
-    AppCardComponent,
+    ApiListComponent,
+    ApiCardComponent,
     
     SpinnerContainerComponent,
-    MemoryListComponent,
+    SampleListComponent,
     ConfirmDialogComponent,
     HomeComponent,
     LoginComponent,

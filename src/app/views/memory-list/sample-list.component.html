@@ -15,8 +15,8 @@
     <table id="tbMemories2" class="data-table">
       <tr>
         <th>Id</th>
-        <th>Namespace</th>
-        <th>API Name</th>
+        <th>Namespace<br />Specific</th>
+        <th>API Id</th>
         <th>Title</th>
         <th>Path</th>
         <th>Method</th>
@@ -26,8 +26,8 @@
       </tr>
       <tr *ngFor="let item of data">
         <td>{{item.requestId}}</td>
-        <td>{{item.namespace}}</td>
-        <td>{{item.apiName}}</td>
+        <td>{{item.sameNamespaceOnly}}</td>
+        <td>{{item.apiId}}</td>
         <td>{{item.title}}</td>
         <td>{{item.path}}</td>
         <td>{{item.methodType}}</td>

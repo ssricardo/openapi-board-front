@@ -1,66 +1,91 @@
 <section>
-  <h1><i class="material-icons">notification_important</i> {{(newItem) ? 'Edit' : 'Create'}} Subscription</h1>
+  <h1><i class="material-icons">notification_important</i> {{(newItem) ? 'Edit Subscription' : 'Subscribe Hook'}} </h1>
 
   <form name="frSubscriber" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-    <div class="form-group">
-      <label for="email">E-mail</label>
-      <input type="email"
-             id="email" name="email"
-             class="form-control"
-             [(ngModel)]="form.email"
-             required #mailField="ngModel" />
-      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && mailField.invalid" >
-        E-mail is required!
-      </div>
-    </div>
+    <mat-tab-group animationDuration="0ms">
+      <mat-tab label="Main">
+        <ng-template matTabContent>
+          <div class="form-group">
+            <label for="hook">Hook URL: </label>
+            <input type="url"
+                   id="hook" name="hook"
+                   class="form-control"
+                   placeholder="https://server.dev"
+                   [(ngModel)]="form.hookAddress"
+                   required pattern="https?://.*" #hookField="ngModel" />
+            <div class="alert alert-warning" role="alert" *ngIf="f.submitted && hookField.invalid" >
+              Webhook is required, and must be a URL
+            </div>
+          </div>
 
-    <div class="form-group">
-      <label for="apiNameSel">API: </label>
-      <mat-form-field class="form-line w50" >
-        <mat-label>Select API</mat-label>
-        <mat-select id="apiNameSel" required [(value)]="form.apiName"
-         #apiNameSel>
-          <mat-option *ngFor="let ap of appList" [value]="ap.name">
-            {{ap.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+          <div class="form-group">
+            <label for="apiNameSel">API: </label>
+            <mat-form-field class="form-line w50" >
+              <mat-label>Select API</mat-label>
+              <mat-select id="apiNameSel" name="apiNameSel" required
+                          [(ngModel)]="form.apiName" #apiNameSel="ngModel">
+                <mat-option *ngFor="let ap of appList" [value]="ap.name">
+                  {{ap.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <div class="alert alert-danger"
-           role="alert"
-           *ngIf="f.submitted && apiNameSel.invalid">
-        <div *ngIf="form.apiName.errors.required">API is required</div>
-      </div>
-    </div>
+            <div class="alert alert-warning"
+                 role="alert"
+                 *ngIf="f.submitted && apiNameSel.invalid">
+              <span>API is required</span>
+            </div>
+          </div>
 
-    <div>
-      <h3>Path filtering:</h3>
-      <div class="action-top action-buttons mat-toolbar">
-        <button type="button" (click)="addPath()" title="Add path"
-                mat-button color="primary">
-          <i class="material-icons">add</i>
-          Add Path
-        </button>
-      </div>
-      <table class="data-table" >
-        <tr>
-          <th>Base Path</th>
-          <th><i class="material-icons">keyboard_hide</i></th>
-        </tr>
-        <tr *ngFor="let item of pathList; let i = index">
-          <td>
-            <input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"
-             placeholder="Path ( ex: /v1/cities/ )">
-          </td>
-          <td><a (click)="removePath(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
-        </tr>
-      </table>
-    </div>
+          <div class="form-group">
+            <label for="apiNameSel">Specific Namespace: </label>
+            <mat-form-field class="form-line w50" >
+              <mat-label>Select Namespace</mat-label>
+              <mat-select id="namespaceSel" [(value)]="form.namespace"
+                          #namespaceSel>
+                <mat-option value=""><strong>All</strong></mat-option>
+                <mat-option *ngFor="let ns of nsList" [value]="ns">
+                  {{ns}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Paths">
+        <ng-template matTabContent>
+          <div class="form-group">
+            <label>Path filtering:</label>
+            <div class="action-top action-buttons mat-toolbar">
+              <button type="button" (click)="addPath()" title="Add path"
+                      mat-button color="primary">
+                <i class="material-icons">add</i>
+                Add Path
+              </button>
+            </div>
+            <table class="data-table" >
+              <tr>
+                <th>Base Path</th>
+                <th><i class="material-icons">keyboard_hide</i></th>
+              </tr>
+              <tr *ngFor="let item of pathList; let i = index">
+                <td>
+                  <input name="in_name_{{i}}" type="text" [(ngModel)]="item.value"
+                         placeholder="Path ( ex: /v1/cities/ )">
+                </td>
+                <td><a (click)="removePath(i)" title="Remove item"><i class="material-icons">delete</i></a></td>
+              </tr>
+            </table>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
 
     <div class="form-group action-bar">
       <div class="action-buttons">
         <button type="button" class="secondary" mat-button (click)="cancel()">Cancel</button>
-        <button type="button" mat-raised-button color="primary" (click)="save()">Submit</button>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
       </div>
     </div>
 

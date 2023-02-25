@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertSubscriber} from "../../../models/models";
+import {Subscription} from "../../../models/models";
 import {SubscriberService} from "../../../services/subscriber.service";
 import {NotificationService} from "../../../services/notification.service";
 import {Router} from "@angular/router";
@@ -13,10 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SubscriberListComponent implements OnInit {
 	filter: string = "";
-	data: AlertSubscriber[] = [];
+	data: Subscription[] = [];
 
 	// for while, we filter only on frontend
-	private completeList: AlertSubscriber[] = [];
+	private completeList: Subscription[] = [];
 
 	constructor(private service: SubscriberService,
 				private router: Router,
@@ -25,7 +25,7 @@ export class SubscriberListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log('Looking up subscribers');
+		console.debug('Looking up subscribers');
 		this.service.listAllSubscription()
 			.subscribe(res => {
 				this.completeList = res
@@ -35,7 +35,7 @@ export class SubscriberListComponent implements OnInit {
 
 	filterSubscriber() {
 		this.data = this.completeList.filter(
-			(item) => item.email.startsWith(this.filter) || item.apiName.startsWith(this.filter));
+			(item) => item.hookAddress.startsWith(this.filter) || item.apiName.startsWith(this.filter));
 	}
 
 	addNewSubscription() {
@@ -49,16 +49,16 @@ export class SubscriberListComponent implements OnInit {
 		return paths.join(',<br />');
 	}
 
-	editItem(item: AlertSubscriber) {
+	editItem(item: Subscription) {
 		let itemCopy = Object.assign({}, item);
 		this.router.navigate(['subs-edit'], {state: itemCopy});
 	}
 
-	removeItem(item: AlertSubscriber) {
+	removeItem(item: Subscription) {
 		let ref = this;
 		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
 			maxWidth: "400px",
-			data: new ConfirmDialogModel("Confirm Action", `Delete subscription? \n${item.apiName}: ${item.email}`)
+			data: new ConfirmDialogModel("Confirm Action", `Delete subscription? \n${item.apiName}: ${item.hookAddress}`)
 		  });
 	  
 		  dialogRef.afterClosed().subscribe(dialogResult => {

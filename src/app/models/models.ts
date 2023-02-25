@@ -5,6 +5,7 @@ export interface ApiNamespace {
 
 /** Main entity, refers to a real App and its API metadata */
 export interface ApiRecord {
+    apiId: string,
     name: string, 
     namespace: string,
     urlAddress?: string,
@@ -12,24 +13,24 @@ export interface ApiRecord {
     source?: string
 }
 
-/** Agregates Apis to be compared */
+/** Aggregates Apis to be compared */
 export interface Comparison {
     source: ApiRecord,
     compared: ApiRecord 
 }
 
-/** Maps validation errors comming from the server */
+/** Maps validation errors coming from the server */
 export interface AppValidationError {
     code: number, 
     cause?: string,
     errorOrigin: string
 }
 
-/** Refers to memory/examples */
-export interface RequestMemoryTO {
+/** Refers to samples/examples */
+export interface RequestSampleTO {
     requestId?: number,
-    apiName?: string;
-    namespace?: string;
+    apiId?: string;
+    sameNamespaceOnly?: boolean;
     path?: string;
     title?: string,
     body?: string,
@@ -101,9 +102,11 @@ export interface LoggedUser {
     roles: Array<string>
 }
 
-export interface AlertSubscriber {
+export interface Subscription {
     id?: number,
     apiName: string,
-    email: string,
+    namespace?: string,
+    hookAddress: string,
+    onlyOnChange?:boolean,
     basePathList: Array<string>
 }

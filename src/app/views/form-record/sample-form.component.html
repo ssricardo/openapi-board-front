@@ -1,0 +1,75 @@
+<section>
+    <h1><i class="material-icons">memory</i> Stored Request</h1>
+
+    <form name="frMemory">
+        <div class="id-line">
+            <label>Id: </label>
+            <span appearance="fill text-output">
+				{{record.requestId || 'New entry'}}
+			</span>
+        </div>
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Main">
+                <ng-template matTabContent>
+                    <div class="form-group">
+                        <label>Title: </label>
+                        <span appearance="fill">
+						    <input name="inTitle" [(ngModel)]="record.title">
+						</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Method: </label>
+                        <span appearance="fill">
+						<select name="slMethod" required [(ngModel)]="record.methodType" disabled
+                                class="w50"
+                                title="Html method. This field can not be modified.">
+							<option value=""></option>
+							<option value="GET">GET</option>
+							<option value="POST">POST</option>
+							<option value="PUT">PUT</option>
+							<option value="DELETE">DELETE</option>
+							<option *ngFor="let item of methodKeys | keyvalue" [value]="item.key"
+                                    [label]="item.value"></option>
+						</select>
+					</span>
+                    </div>
+                    <div>
+                        <label>Path: </label>
+                        <span appearance="fill">
+						<input name="inOperation" [(ngModel)]="record.path" disabled
+                               title="Relation to an operation. This field can not be modified.">
+					</span>
+                    </div>
+                </ng-template>
+            </mat-tab>
+
+            <mat-tab label="Body">
+                <ng-template matTabContent>
+                    <div>
+						<span appearance="fill">
+							<ngx-monaco-editor name="inBody" [options]="editorOptions" [(ngModel)]="requestBody"
+                                               class="ta-code"></ngx-monaco-editor>
+						</span>
+                    </div>
+                </ng-template>
+            </mat-tab>
+
+            <mat-tab label="Parameters">
+                <ng-template matTabContent>
+                    <div>
+						<span appearance="fill">
+							<label>Parameters: </label>
+							<app-parameters-view [dataSource]="record.parameters"></app-parameters-view>
+						</span>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+
+        <div class="action-buttons">
+            <button class="secondary" mat-button (click)="cancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="save()">Submit</button>
+        </div>
+    </form>
+
+</section>

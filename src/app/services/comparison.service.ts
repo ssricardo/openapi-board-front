@@ -16,9 +16,9 @@ export class ComparisonService {
 
   /** Calls external service to get comparison data */
   public compareApps(firstName: string, firstNamespace: string, firstVersion:string,
-    secondName: string, secondNamespace: string, secondVersion:string): Observable<Comparison> {
+    secondNamespace: string, secondVersion:string): Observable<Comparison> {
 
-      if (! this.assertNotBlank(firstName, firstNamespace, firstVersion, secondName, secondNamespace, secondVersion)) {
+      if (! this.assertNotBlank(firstName, firstNamespace, firstVersion, secondNamespace, secondVersion)) {
           return throwError('Invalid fields');
       }
 
@@ -28,7 +28,6 @@ export class ComparisonService {
             srcName: firstName,
             srcNs: firstNamespace,
             srcVersion: firstVersion,
-            compareName: secondName,
             compareNs: secondNamespace,
             compareVersion: secondVersion,
           },
