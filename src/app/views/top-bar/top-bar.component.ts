@@ -10,7 +10,7 @@ import {LoggedUser} from "../../models/models";
 })
 export class TopBarComponent implements OnInit {
 
-  public namespace: string | null = null;
+  public context: string | null = null;
   public isHome = true;
   user: LoggedUser | null = null;
 
@@ -25,7 +25,7 @@ export class TopBarComponent implements OnInit {
           this.isHome = (parts[1] === '' || parts[1] === 'login');
         }
 
-        this.namespace = (parts.length < 2) ? null : parts[2];
+        this.context = (parts.length < 2) ? null : parts[2];
       }
     });
 
